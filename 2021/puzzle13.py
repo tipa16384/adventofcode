@@ -22,18 +22,24 @@ def fold(axis, value, points):
         fn = lambda p: p if p[1] < value else (p[0], value - (p[1] - value))
     return set(fn(point) for point in points)
 
-def draw(first_points, points):
-    win = curses.initscr()
+def draw(win, first_points, points):
     win.clear()
 
     win.addstr(0, 0, 'Part 1: {}'.format(first_points))
 
     for p in points:
-        win.addch(p[1]+2, p[0], '#')
+        try:
+            win.addch(p[1]+2, p[0], '#')
+        except curses.error:
+            pass
     
     win.refresh()
     win.getch()
     curses.endwin()
 
-fp, p = read_input()
-draw(fp, p)
+def easy_peazy(win):
+    fp, p = read_input()
+    draw(win, fp, p)
+
+curses.wrapper(easy_peazy)
+
