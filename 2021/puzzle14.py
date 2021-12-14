@@ -1,6 +1,9 @@
 from collections import Counter
+from timeit import default_timer as timer
+from datetime import timedelta
 
 def polymerize(template, subs, steps):
+    start = timer()
     letter_counts = Counter(template)
     pair_counts = Counter(template[i:i+2] for i in range(len(template) - 1))
     for i in range(steps):
@@ -12,6 +15,7 @@ def polymerize(template, subs, steps):
         pair_counts = ndict
     print(letter_counts.most_common()[0]
         [1] - letter_counts.most_common()[-1][1])
+    print(timedelta(seconds=timer() - start))
 
 with open('puzzle14.dat', 'r') as f:
     lines = f.readlines()
