@@ -11,13 +11,14 @@ operator_fns = {
 }
 
 data = None
-bp = 0
+bp = None
 bl = None
 
 def setup(gl_data):
-    global data, bl
+    global data, bl, bp
     data = gl_data
     bl = len(data)
+    bp = 0
 
 class Packet:
     def __init__(self):
@@ -65,16 +66,9 @@ class Packet:
         return val
 
     def log(self, indent=0):
-        spaces = '  ' * indent
-        print (f'{spaces}(Packet version={self.version}, type={self.type}, value={self.value})')
+        print (f'{"  " * indent}(Packet version={self.version}, type={self.type}, value={self.value})')
         for subpacket in self.subpackets:
             subpacket.log(indent + 1)
 
     def version_sum(self):
         return self.version + sum([subpacket.version_sum() for subpacket in self.subpackets])
-
-    def __str__(self):
-        return f'(Packet version={self.version}, type={self.type}, value={self.value}, subpackets={self.subpackets})'
-
-    def __repr__(self):
-        return self.__str__()

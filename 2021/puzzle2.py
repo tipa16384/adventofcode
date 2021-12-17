@@ -6,20 +6,35 @@ def read_course():
         for line in f:
             yield tuple(line.split(' '))
 
-distance = 0
-depth = 0
-aim = 0
+def part1():
+    distance = 0
+    depth = 0
 
-for course, delta in read_course():
-    if course == 'forward':
-        distance += int(delta)
-        depth += aim * int(delta)
-    elif course == 'up':
-        aim -= int(delta)
-    elif course == 'down':
-        aim += int(delta)
-    else:
-        assert False
+    for course, delta in read_course():
+        if course == 'forward':
+            distance += int(delta)
+        elif course == 'up':
+            depth -= int(delta)
+        elif course == 'down':
+            depth += int(delta)
 
-# print the product of distance and depth
-print(distance * depth)
+    return distance * depth
+
+def part2():
+    distance = 0
+    depth = 0
+    aim = 0
+
+    for course, delta in read_course():
+        if course == 'forward':
+            distance += int(delta)
+            depth += aim * int(delta)
+        elif course == 'up':
+            aim -= int(delta)
+        elif course == 'down':
+            aim += int(delta)
+
+    return distance * depth
+
+print ('Part 1:', part1())
+print ('Part 2:', part2())
