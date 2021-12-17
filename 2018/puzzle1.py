@@ -1,11 +1,7 @@
 from collections import defaultdict
 
-
-def read_data():
-    with open('puzzle1.dat') as f:
-        return [int(line.strip()) for line in f]
-
-data = read_data()
+with open('puzzle1.dat') as f:
+    data = list(map(int, f.readlines()))
 
 print ('Part 1:', sum(data))
 
