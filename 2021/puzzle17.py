@@ -1,4 +1,5 @@
 import re
+from timeit import default_timer as timer
 
 #data = "target area: x=352..377, y=-49..-30"
 data = "target area: x=56..76, y=-162..-134"
@@ -26,6 +27,7 @@ def trace(dx, dy):
         x, y = x + dx, y + dy
         dx, dy = dxf(dx), dyf(dy)
 
+start = timer()
 m = re.search(r"x=([\d-]+)\.\.([\d-]+), y=([\d-]+)\.\.([\d-]+)", data)
 x1, x2, y1, y2 = int(m.group(1)), int(
     m.group(2)), int(m.group(3)), int(m.group(4))
@@ -41,3 +43,5 @@ print('Part 1:', max(y for _, y, t in possible_ys if t in xy_times))
 
 print('Part 2:', sum(1 for dx in range(min(possible_xs)[0], max(possible_xs)[
     0]+1) for dy in range(min(possible_ys)[0], max(possible_ys)[0]+1) if trace(dx, dy)))
+
+print ('Time:', timer() - start)
