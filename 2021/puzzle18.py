@@ -2,6 +2,7 @@ from binarytree import Node
 from functools import reduce
 from itertools import combinations
 import re
+from timeit import default_timer as timer
 
 def tree_to_snail(tree):
     if tree.is_leaf():
@@ -114,10 +115,15 @@ Node.is_leaf = lambda x: x.value != -1
 with open("puzzle18.dat") as f:
     snails = [line.strip() for line in f]
 
+start = timer()
 answer = reduce(lambda x, y: snail_simplify(snail_addition(x,y)), snails)
 print ('Part 1:', snail_magnitude(answer))
+end_part1 = timer()
+print ('Time part 1:', end_part1 - start)
 
 pair_list = [x for x in combinations(snails, 2)] + [x for x in combinations(snails[::-1], 2)]
 mag_list = [snail_magnitude(snail_addition(x[0], x[1])) for x in pair_list]
 
 print('Part 2:', max(mag_list))
+print('Time part 2:', timer() - end_part1)
+
