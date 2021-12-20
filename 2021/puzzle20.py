@@ -1,3 +1,5 @@
+from timeit import default_timer as timer
+
 def build_index(image: list, x: int, y: int, step: int) -> int:
     index = 0
     for dy in range(y-1, y+2):
@@ -20,7 +22,7 @@ def process_image(image, key, num_steps) -> list:
         image = new_image
     return image
 
-with open('puzzle20.dat') as f:
+with open('e:\\Documents\\adventofcode\\2021\\puzzle20.dat') as f:
     data = f.read().split('\n')
     key = data[0]
     image = data[2:]
@@ -30,5 +32,12 @@ if key[0] == '.':
 else:
     def infinity(step: int) -> int: return 1 if step % 2 else 0
 
+start = timer()
 print("Part 1:", count_pixels(process_image(image, key, 2)))
+after_part_1 = timer()
+print(f"Part 1 took {after_part_1 - start:.3f} seconds")
 print("Part 2:", count_pixels(process_image(image, key, 50)))
+after_part_2 = timer()
+print(f"Part 2 took {after_part_2 - after_part_1:.3f} seconds")
+print(f"Total time: {after_part_2 - start:.3f} seconds")
+
