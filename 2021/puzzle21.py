@@ -37,7 +37,7 @@ def play_game1():
             break
         player = 1 - player
 
-#@cache
+@cache
 def play_game2(player: int, game_state: tuple) -> tuple:
     if get_player_info(player, game_state)[1] >= 21:
         return (0, 1) if player else (1, 0)
