@@ -10,9 +10,8 @@ def read_data() -> dict:
     circuit = dict()
 
     with open("circuit7.dat") as f:
-        for line in f.read().split('\n'):
-            line = line.split(' -> ')
-            circuit[line[1]] = line[0]
+        for x, y in (l.split(' -> ') for l in f.read().split('\n')):
+            circuit[y] = x
 
     return circuit
 
