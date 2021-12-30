@@ -1,6 +1,7 @@
 import re
 from collections import defaultdict
 from itertools import permutations
+from timeit import default_timer as timer
 
 def read_data():
     seats = defaultdict(lambda: defaultdict(int))
@@ -18,8 +19,10 @@ def score(seats, order):
 
 seats = read_data()
 
-print("Part 1:", max(score(seats, x) for x in permutations(seats.keys())))
+start = timer()
+print(f"Part 1: {max(score(seats, x) for x in permutations(seats.keys()))} in {timer() - start:.3f} seconds")
 
 seats['You'] = defaultdict(int)
 
-print("Part 2:", max(score(seats, x) for x in permutations(seats.keys())))
+start = timer()
+print(f"Part 2: {max(score(seats, x) for x in permutations(seats.keys()))} in {timer() - start:.3f} seconds")
