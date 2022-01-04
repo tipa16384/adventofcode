@@ -85,7 +85,7 @@ def pygame_simulate(cells: set, steps: int, is_part_two:bool=False) -> int:
         for x, y in cells:
             pygame.draw.circle(screen, cell_colors[(x,y)], (x*5+2.5, y*5+2.5), 4)
         pygame.display.flip()
-        pygame.image.save(screen, f'e:\\Documents\\adventofcode\\2015\\puzzle18_pygame_{step}.png')
+        #pygame.image.save(screen, f'e:\\Documents\\adventofcode\\2015\\puzzle18_pygame_{step}.png')
 
     return len(cells)
 

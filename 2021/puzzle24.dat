@@ -1,23 +1,75 @@
-# i1 adds w+15
 inp w
-add z w
-add z 15
-# i2 adds w+10
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 15
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 15
+mul y x
+add z y
 inp w
-mul z 26
-add z w
-add z 10
-# i3 adds w+2
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 15
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 10
+mul y x
+add z y
 inp w
-mul z 26
-add z w
-add z 2
-# i4 1..5 adds w+16
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 12
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 2
+mul y x
+add z y
 inp w
-mul z 26
-add z w
-add z 16
-# i5 5..9 removes a letter if rules adds w+12 if not
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 13
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 16
+mul y x
+add z y
 inp w
 mul x 0
 add x z
@@ -36,12 +88,24 @@ add y w
 add y 12
 mul y x
 add z y
-# i6 1..7 adds w + 11
 inp w
-mul z 26
-add z w
-add z 11
-# i7 3..9 removes if i6+2 otherwise adds w+5
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 10
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 11
+mul y x
+add z y
 inp w
 mul x 0
 add x z
@@ -60,17 +124,42 @@ add y w
 add y 5
 mul y x
 add z y
-# i8 [1] adds w+16
 inp w
-mul z 26
-add z w
-add z 16
-# i9 must be 9 adds w+6
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 14
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 16
+mul y x
+add z y
 inp w
-mul z 26
-add z w
-add z 6
-# i10 must be 1
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 13
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 6
+mul y x
+add z y
 inp w
 mul x 0
 add x z
@@ -89,7 +178,6 @@ add y w
 add y 15
 mul y x
 add z y
-# i11 [6] removes i8+5
 inp w
 mul x 0
 add x z
@@ -108,7 +196,6 @@ add y w
 add y 3
 mul y x
 add z y
-# i12 must be same as i3
 inp w
 mul x 0
 add x z
@@ -127,7 +214,6 @@ add y w
 add y 12
 mul y x
 add z y
-# i13 6 less than i2
 inp w
 mul x 0
 add x z
@@ -146,7 +232,6 @@ add y w
 add y 10
 mul y x
 add z y
-# broken
 inp w
 mul x 0
 add x z

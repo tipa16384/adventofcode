@@ -1,57 +1,35 @@
-from collections import defaultdict
-
-alu = {
-    'add': lambda a, b: eval(a+"+"+b),
-    'mul': lambda a, b: eval(a+"*"+b),
-    'div': lambda a, b: eval(a+"//"+b),
-    'mod': lambda a, b: eval(a+"%"+b),
-    'eql': lambda a, b: eval("1 if "+a+" == "+b+" else 0")
-}
-
-def to_state(s: str): return f"state['{s}']" if s in 'wxyz' else s
-
-def put_var(var: str, val: int) -> None: state[var] = val
-
 def read_program() -> list:
-    with open('monad24.dat') as f:
+    with open('puzzle24.dat') as f:
         return f.read().split('\n')
 
-def run_program(program: list, inz: str = None) -> dict:
-    global state
-    state = defaultdict(int)
-    inp_gen = (c for c in inz) if inz else None
-    for l in program:
-        ins = l.split()
-        if ins[0] == 'inp':
-            if inp_gen:
-                put_var(ins[1], int(next(inp_gen)))
-            else:
-                put_var(ins[1], int(input("MONAD DEMANDS INPUT: ")))
-        else:
-            put_var(ins[1], alu[ins[0]](to_state(ins[1]), to_state(ins[2])))
+def hack_program(part: str, program: list, digits: str) -> str:
+    display = [digits[0]] * 14
 
-    return state
+    for left, right, offset in analyze_input(program):
+        for c in digits:
+            rc = int(c) + offset
+            if rc in range(1, 10):
+                display[left], display[right] = c, str(rc)
+                break
 
-run_program(read_program(), '89959794919939')
-assert state['z'] == 0
+    print(f"Part {part}: {''.join(display)}")
 
-run_program(read_program(), '17115131916112')
-assert state['z'] == 0
+def analyze_input(program: list) -> None:
+    current_input = -1
+    z_stack = []
+    ins = (x for x in program)
+    for instruction in ins:
+        if instruction.startswith('inp'):
+            current_input += 1
+        elif instruction == 'div z 1':
+            for _ in range(11):
+                xins = next(ins)
+            xins = int(xins.split()[-1])
+            z_stack.append((current_input, xins))
+        elif instruction == 'div z 26':
+            xdel = int(next(ins).split()[-1])
+            left, xins = z_stack.pop()
+            yield left, current_input, xins + xdel
 
-run_program(read_program())
-
-    # rules:
-    # 1. I1 = I14-1   [8, 1]
-    # 2. I2 = I13+6   [9, 7]
-    # 3. I3 = I12     [9, 1]
-    # 4. I4 = I5-4    [5, 1]
-    # 5. I5 = I4+4    [9, 5]
-    # 6. I6 = I7-2    [7, 1]
-    # 7. I7 = I6+2    [9, 3]
-    # 8. I8 = I11-5   [4, 1]
-    # 9. I9 = 9       [9, 9]
-    # 10. I10 = 1     [1, 1]
-    # 11. I11 = I8+5  [9, 6]
-    # 12. I12 = I3    [9, 1]
-    # 13. I13 = I2-6  [3, 1]
-    # 14. I14 = I1+1  [9, 2]
+hack_program('1', read_program(), "987654321")
+hack_program('2', read_program(), "123456789")
