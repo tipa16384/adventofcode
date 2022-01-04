@@ -19,7 +19,7 @@ def hack_program(part: str, program: list, digits: str) -> str:
     for left, right, offset in analyze_input(program):
         for c in digits:
             rc = str(int(c) + offset)
-            if rc in digits:
+            if len(rc) == 1 and rc in digits:
                 display[left], display[right] = c, rc
                 break
 
