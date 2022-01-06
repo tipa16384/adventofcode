@@ -1,5 +1,5 @@
 import heapq
-from functools import lru_cache
+from functools import cache
 from timeit import default_timer as timer
 
 def read_data() -> list:
@@ -10,13 +10,19 @@ move_values = {'A': 1, 'B':10, 'C':100, 'D':1000 }
 home_x = {'A': 3, 'B': 5, 'C': 7, 'D': 9}
 
 def marshall(data: list) -> str:
-    return '|'.join(row for row in data)
+    return ''.join(c for row in data for c in row if c in 'ABCD.')
 
-@lru_cache(maxsize=None)
+@cache
 def unmarshall(key: str) -> list:
-    return list(row for row in key.split('|'))
+    data = list(template)
+    source = (k for k in key)
+    for y, row in enumerate(data):
+        rowdata = ''.join(next(source) if c in 'ABCD.' else c for c in row)
+        data[y] = rowdata
 
-@lru_cache(maxsize=None)
+    return data
+
+@cache
 def calc_dist(key: str) -> int:
     data = unmarshall(key)
     total_dist = 0
@@ -88,7 +94,7 @@ def yield_moves(key: str) -> None:
                         yield (x, y, dx, 1, dist * move_values[c])
                     dx += 1
 
-@lru_cache(maxsize=None)
+@cache
 def make_move(key: str, move: tuple) -> str:
     data = unmarshall(key)
     new_data = list(data)
@@ -106,7 +112,10 @@ def print_board(key: str) -> None:
         print (''.join(row))
     print ()
 
-data = marshall(read_data())
+template = read_data()
+data = marshall(template)
+print (data)
+assert template == unmarshall(data)
 
 open_nodes = list()
 heapq.heappush(open_nodes, (0, 0, data, []))
