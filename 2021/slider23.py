@@ -1,3 +1,5 @@
+import heapq
+
 def read_data() -> list:
     with open('puzzle23.dat') as f:
         return f.read().split('\n')
@@ -48,7 +50,7 @@ def yield_moves(data: list) -> None:
                     dist += 1
                     dest_y = y + 2
 
-            print (f"move {c} from {x},1 to {home_x[c]},{dest_y}")
+            #print (f"move {c} from {x},1 to {home_x[c]},{dest_y}")
             yield (x, 1, home_x[c], dest_y, dist * move_values[c])
     
     for y in range(2, len(data)):
@@ -61,14 +63,14 @@ def yield_moves(data: list) -> None:
                 while data[1][dx] == '.':
                     if dx not in home_x.values():
                         dist = y - 1 + x - dx
-                        print (f"move {c} from {x},{y} into the hallway at {dx},1")
+                        #print (f"move {c} from {x},{y} into the hallway at {dx},1")
                         yield (x, y, dx, 1, dist * move_values[c])
                     dx -= 1
                 dx = x + 1
                 while data[1][dx] == '.':
                     if dx not in home_x.values():
                         dist = y - 1 + dx - x
-                        print (f"move {c} from {x},{y} into the hallway at {dx},1")
+                        #print (f"move {c} from {x},{y} into the hallway at {dx},1")
                         yield (x, y, dx, 1, dist * move_values[c])
                     dx += 1
 
@@ -90,8 +92,23 @@ def print_board(data: list) -> None:
 data = read_data()
 print(calc_dist(data))
 
-for m in yield_moves(data):
-    print(m)
-    print_board(make_move(data, m))
+open_nodes = list()
+heapq.heappush(open_nodes, (0, 0, data, []))
 
+while open_nodes:
+    score, total_dist, board, moves = heapq.heappop(open_nodes)
+    dist = calc_dist(board)
+    if dist == 0:
+        for h in moves:
+            print_board(h)
+        print_board(board)
+        print (f"Score: {total_dist}")
+        break
+    history = list(moves)
+    history.append(board)
+    for m in yield_moves(board):
+        next_board = make_move(board, m)
+        move_dist = m[4]
+        next_score = score + move_dist + calc_dist(next_board)
+        heapq.heappush(open_nodes, (next_score, total_dist + move_dist, next_board, history))
 
