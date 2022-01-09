@@ -1,94 +1,140 @@
 import pygame
 from spritesheet import SpriteSheet
+from actor import find_actor, Babus, Archer, Templar, Mog
 from pygame.time import Clock
-
 
 def read_data() -> list:
     with open('moves.txt', 'r') as f:
         lines = f.read().split('\n')
-        num_moves = len(lines)//7
-        moves = [[l for l in lines[i*7:i*7+7]] for i in range(num_moves)]
-    return moves
+        board = list()
+        moves = list()
 
+        state = 0
+        for l, line in enumerate(lines):
+            if not line:
+                state += 1
+            elif state == 0:
+                board.append(line)
+            elif state == 1:
+                moves.append(eval(line))
+    return board, moves
 
-def run(moves: list):
+def screen_coords(x, y):
+    sx = ssize//2 + x*ssize//2 + y*ssize//2
+    sy = y*ssize//4 - x*ssize//4 + 228
+    return (sx, sy)
+
+symbol_actor = {'B': Babus, 'A': Archer, 'D': Templar, 'C': Mog}
+ssize = 64
+
+def run(board, moves: list):
     pygame.init()
     pygame.font.init()
+
+    step = 805
 
     size = 640, 480
     screen = pygame.display.set_mode(size)
 
+    myfont = pygame.font.SysFont('verdana', 32)
+
+    actors = make_actors(board)
+
     sprites = SpriteSheet('Cubes - Green 64x64.png')
-    ssize = 64
     sprite_rect = (0, 0, ssize, ssize)
     tile = sprites.image_at(sprite_rect, colorkey=-1)
 
     sprites = SpriteSheet('Cubes - Stone 64x64.png')
     rock = sprites.image_at(sprite_rect, colorkey=-1)
+    move_iter = iter(moves)
 
-    sprites = SpriteSheet('babus.png')
-    babus_rects = [(12,  42, 32, 48), (12, 106, 32, 48),
-                   (12, 170, 32, 48), (12, 234, 32, 48)]
-    babus = sprites.images_at(babus_rects, colorkey=-1)
-
-    sprites = SpriteSheet('archer.png')
-    archer_rects = [(66,0,32,60), (66, 60, 32, 60), (98, 0, 32, 60), (98, 60, 32, 60)]
-    archer = sprites.images_at(archer_rects, colorkey=-1)
-
-    sprites = SpriteSheet('templar.png')
-    templar_rects = [(12,34,32,56), (12,98,32,56), (12,162,32,56), (12,226,32,56)]
-    templar = sprites.images_at(templar_rects, colorkey=-1)
-
-    sprites = SpriteSheet('mog.png')
-    mog_rects = [(198,154,32,56), (215,2,32,56), (198,210,32,56), (198,58,32,56)]
-    mog = sprites.images_at(mog_rects, colorkey=-1)
-
+    animation_event = pygame.event.custom_type()
+    pygame.time.set_timer(animation_event, 250)
+    movement_event = pygame.event.custom_type()
+    pygame.time.set_timer(movement_event, 1000//120)
     ticker = Clock()
 
+    actual_total = 0
+    shown_total = 0
+
     running = True
+    moving = True
+
     while running:
-        for data in moves:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                running = False
+                break
+            elif event.type == pygame.KEYDOWN:
+                # Was it the Escape key? If so, stop the loop.
+                if event.key == pygame.K_ESCAPE:
                     running = False
                     break
-                if event.type == pygame.KEYDOWN:
-                    # Was it the Escape key? If so, stop the loop.
-                    if event.key == pygame.K_ESCAPE:
-                        running = False
-                        break
-            if not running: break
-            screen.fill((0, 255, 255))
-            ticker.tick(1)
-            for y, row in enumerate(data):
-                for x in range(len(row)-1, -1, -1):
-                    c = row[x]
-                    sx = ssize//2 + x*ssize//2 + y*ssize//2
-                    sy = y*ssize//4 - x*ssize//4 + 228
-                    if c == '#':
-                        screen.blit(rock, (sx, sy-8))
-                    elif c in 'ABCD.':
-                        facing = 0 if y == 1 else 3
-                        screen.blit(tile, (sx, sy))
-                        if c != '.':
-                            if c == 'A':
-                                sprite = archer[facing]
-                                rects = archer_rects[facing]
-                            elif c == 'C':
-                                sprite = templar[facing]
-                                rects = templar_rects[facing]
-                            elif c == 'D':
-                                sprite = mog[facing]
-                                rects = mog_rects[facing]
-                            else:
-                                sprite = babus[facing]
-                                rects = babus_rects[facing]
-                            screen.blit(
-                                sprite, (sx + (ssize-rects[2])//2, sy-rects[3]+ssize//4))
-            pygame.display.flip()
+            elif event.type == animation_event:
+                for actor in actors:
+                    actor.animate()
+            elif event.type == movement_event:
+                if moving:
+                    actors_in_motion = [actor for actor in actors if actor.moving]
+
+                    if not actors_in_motion:
+                        try:
+                            move = next(move_iter)
+                            print (move)
+                            actual_total += move[-1]
+                            actor = find_actor(actors, move)
+                            actor.move_to(*move)
+                        except StopIteration:
+                            moving = False
+                            pygame.time.set_timer(pygame.QUIT, 5000)
+
+                    else:
+                        for actor in actors_in_motion:
+                            actor.update()
+
+        if not running:
+            break
+
+        ticker.tick(60)
+        screen.fill((0, 255, 255))
+
+        if shown_total < actual_total:
+            shown_total = min(actual_total, shown_total+83)
+
+        textsurface = myfont.render(f"Part 2: {shown_total:05}", False, (255, 0, 0))
+        screen.blit(textsurface, (5, 5))
+
+        for y, row in enumerate(board):
+            for x in range(len(row)-1, -1, -1):
+                c = row[x]
+                sx, sy = screen_coords(x, y)
+                if c == '#':
+                    screen.blit(rock, (sx, sy-8))
+                elif c != ' ':
+                    screen.blit(tile, (sx, sy))
+
+        for actor in sorted(actors):
+            sx, sy = screen_coords(actor.x, actor.y)
+            sprite = actor.get_sprite()
+            rects = actor.get_rect()
+            screen.blit(
+                sprite, (sx + (ssize-rects[2])//2, sy-rects[3]+ssize//4))
+
+        pygame.display.flip()
+        pygame.image.save(screen, f'puzzle23_{step}.png')
+        step += 1
 
 
-moves = read_data()
+def make_actors(board: list) -> list:
+    actors = list()
+    for y, row in enumerate(board):
+        for x, c in enumerate(row):
+            if c in 'ABCD':
+                actors.append(symbol_actor[c]((x, y)))
+    return actors
 
-run(moves)
+
+board, moves = read_data()
+
+run(board, moves)

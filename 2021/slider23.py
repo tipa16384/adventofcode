@@ -114,8 +114,7 @@ def print_board(key: str) -> None:
 
 template = read_data()
 data = marshall(template)
-print (data)
-assert template == unmarshall(data)
+print_board(data)
 
 open_nodes = list()
 heapq.heappush(open_nodes, (0, 0, data, []))
@@ -130,14 +129,13 @@ while open_nodes:
     dist = calc_dist(board)
     if dist == 0:
         for h in moves:
-            print_board(h)
+            print (h)
+        print()
         print_board(board)
         print (f"Score: {total_dist} nodes: {nodes_seen} time: {timer() - start}")
         break
-    history = list(moves)
-    history.append(board)
     for m in yield_moves(board):
         next_board = make_move(board, m)
         move_dist = m[4]
         next_score = score + move_dist + calc_dist(next_board)
-        heapq.heappush(open_nodes, (next_score, total_dist + move_dist, next_board, history))
+        heapq.heappush(open_nodes, (next_score, total_dist + move_dist, next_board, moves + [m]))
