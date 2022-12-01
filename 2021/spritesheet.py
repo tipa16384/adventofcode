@@ -11,8 +11,6 @@
 # - Updated from Python 2 -> Python 3.
 
 import pygame
-
-
 class SpriteSheet:
 
     def __init__(self, filename):
