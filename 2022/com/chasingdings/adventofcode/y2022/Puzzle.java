@@ -1,4 +1,4 @@
-package aoc.y2022;
+package com.chasingdings.adventofcode.y2022;
 
 import java.io.IOException;
 
@@ -7,4 +7,5 @@ public interface Puzzle {
 
     void solve() throws IOException;
     String readData(String fileName) throws IOException;
+    String getPuzzleName();
 }
