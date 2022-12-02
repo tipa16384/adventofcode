@@ -1,0 +1,1 @@
+["^ ","~$split-by-blank-lines",["^ ","~:row",4,"~:col",1,"~:fixed-arities",["~#set",[1]],"~:name","^0","~:ns","~$puzzle1","~:top-ns","^7","~:arities",["^ ","~i1",["^ ","~:ret","~:seq","~:arglist-str","[lines]"]]],"~:filename","E:\\Documents\\adventofcode\\2022\\puzzle1.clj"]

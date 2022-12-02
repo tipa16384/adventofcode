@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Advent",
+            "request": "launch",
+            "mainClass": "com.chasingdings.y2022.Advent",
+            "args": "DAY2",
+            "projectName": "y2022"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Advent",
+            "request": "launch",
+            "mainClass": "com.chasingdings.adventofcode.y2022.Advent",
+            "args": "DAY2",
+            "projectName": "adventofcode_117b7e6d"
+        }
+    ]
+}
