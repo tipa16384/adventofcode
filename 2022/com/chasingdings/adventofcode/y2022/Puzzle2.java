@@ -1,6 +1,5 @@
 package com.chasingdings.adventofcode.y2022;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -35,12 +34,22 @@ public class Puzzle2 extends AbstractPuzzle {
     }
 
     @Override
-    public void solve() throws IOException {
-        var dataList = getInputData();
-        var part1Score = dataList.stream().mapToInt(x -> part1.get(x)).sum();
-        System.out.println(String.format("Part 1: %d", part1Score));
-        var part2Score = dataList.stream().mapToInt(x -> part2.get(x)).sum();
-        System.out.println(String.format("Part 2: %d", part2Score));
+    public Object solve1(String content) {
+        return solveWithMap(content, part1);
+    }
+    
+    @Override
+    public Object solve2(String content) {
+        return solveWithMap(content, part2);
+    }
+
+    private int solveWithMap(String content, Map<String, Integer> partMap) {
+        return getInputData(content).stream().mapToInt(x -> partMap.get(x)).sum();
+    }
+
+    @Override
+    public String getDataFilePath() {
+        return DATA_FILE;
     }
 
     @Override
@@ -48,9 +57,7 @@ public class Puzzle2 extends AbstractPuzzle {
         return "Day 2 - Rock Paper Scissors";
     }
 
-    private List<String> getInputData() throws IOException {
-        var content = readData(DATA_FILE);
-
+    private List<String> getInputData(String content) {
         return Arrays.asList(content.split(EOL));
     }
 }

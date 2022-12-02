@@ -21,7 +21,14 @@ public class Advent {
         System.out.println(String.format("Now running %s", puzzle.getPuzzleName()));
 
         try {
-            puzzle.solve();
+            System.out.println("Reading in puzzle data...");
+            var content = puzzle.readData(puzzle.getDataFilePath());
+            System.out.println("Solving part 1...");
+            var part1Solution = puzzle.solve1(content).toString();
+            System.out.println("Solving part 2...");
+            var part2Solution = puzzle.solve2(content).toString();
+            System.out.println("Part 1: " + part1Solution);
+            System.out.println("Part 2: " + part2Solution);
         } catch (IOException e) {
             e.printStackTrace();
         }

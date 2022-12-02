@@ -10,4 +10,14 @@ public abstract class AbstractPuzzle implements Puzzle {
     public String readData(String fileName) throws IOException {
         return new String(Files.readAllBytes(Paths.get(fileName)));
     }
+
+    @Override
+    public Object solve1(String content) {
+        return "Not Implemented";
+    }
+
+    @Override
+    public Object solve2(String content) {
+        return "Not Implemented";
+    }
 }
