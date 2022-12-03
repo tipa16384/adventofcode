@@ -1,8 +1,6 @@
 package com.chasingdings.y2022;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Puzzle2 extends AbstractPuzzle {
@@ -44,7 +42,7 @@ public class Puzzle2 extends AbstractPuzzle {
     }
 
     private int solveWithMap(String content, Map<String, Integer> partMap) {
-        return getInputData(content).stream().mapToInt(x -> partMap.get(x)).sum();
+        return getInputDataByLine(content).stream().mapToInt(x -> partMap.get(x)).sum();
     }
 
     @Override
@@ -55,9 +53,5 @@ public class Puzzle2 extends AbstractPuzzle {
     @Override
     public String getPuzzleName() {
         return "Day 2 - Rock Paper Scissors";
-    }
-
-    private List<String> getInputData(String content) {
-        return Arrays.asList(content.split(EOL));
     }
 }

@@ -3,6 +3,8 @@ package com.chasingdings.y2022;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class AbstractPuzzle implements Puzzle {
     @Override
@@ -18,5 +20,9 @@ public abstract class AbstractPuzzle implements Puzzle {
     @Override
     public Object solve2(String content) {
         return "Not Implemented";
+    }
+    
+    List<String> getInputDataByLine(String content) {
+        return Arrays.asList(content.split(EOL));
     }
 }
