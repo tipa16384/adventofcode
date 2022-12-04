@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.SetUtils;
+
 public class Puzzle3 extends AbstractPuzzle {
     private static final String DATA_FILE = "2022\\puzzle3.dat";
 
@@ -12,23 +14,19 @@ public class Puzzle3 extends AbstractPuzzle {
         var rucksacks = getInputDataByLine(content);
 
         return rucksacks.stream().mapToInt(ruck -> {
-            var len = ruck.length()/2;
-            var left = getSet(ruck.substring(0, len));
-        
-            left.retainAll(getSet(ruck.substring(len)));
-            return left.iterator().next();
+            var len = ruck.length() / 2;
+            return SetUtils.intersection(getSet(ruck.substring(0, len)),
+                    getSet(ruck.substring(len))).iterator().next();
         }).sum();
     }
-    
+
     @Override
     public Object solve2(String content) {
         var elfGroups = groupElves(getInputDataByLine(content));
 
         return elfGroups.stream().mapToInt(eg -> {
-            var elf = getSet(eg.get(0));
-            elf.retainAll(getSet(eg.get(1)));
-            elf.retainAll(getSet(eg.get(2)));
-            return elf.iterator().next();
+            var elf = SetUtils.intersection(getSet(eg.get(0)), getSet(eg.get(1)));
+            return SetUtils.intersection(elf, getSet(eg.get(2))).iterator().next();
         }).sum();
     }
 
@@ -39,7 +37,7 @@ public class Puzzle3 extends AbstractPuzzle {
 
     @Override
     public String getPuzzleName() {
-        return "Day 3 - Rusksack Reorganization";
+        return "Day 3 - Rucksack Reorganization";
     }
 
     /**
@@ -50,7 +48,7 @@ public class Puzzle3 extends AbstractPuzzle {
     }
 
     /**
-     * Take a character and if it is a lower case character, return 1..26. 
+     * Take a character and if it is a lower case character, return 1..26.
      * If it is an upper case character, return 27..52.
      */
     private int priority(int c) {
