@@ -1,11 +1,10 @@
 package com.chasingdings.y2022;
 
-import java.util.regex.Pattern;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Puzzle4 extends AbstractPuzzle {
     private static final String DATA_FILE = "2022\\puzzle4.dat";
-    private static final Pattern PATTERN = Pattern.compile("(\\d+)\\-(\\d+),(\\d+)\\-(\\d+)");
 
     @Override
     public Object solve1(String content) {
@@ -42,15 +41,12 @@ public class Puzzle4 extends AbstractPuzzle {
     }
 
     private boolean isOverlap(String s, Boolinator boolinator) {
-        var m = PATTERN.matcher(s);
-        if (m.matches()) {
-            int x1 = Integer.parseInt(m.group(1));
-            int x2 = Integer.parseInt(m.group(2));
-            int y1 = Integer.parseInt(m.group(3));
-            int y2 = Integer.parseInt(m.group(4));
-            return boolinator.pleaseDo(x1 <= y1 && y1 <= x2, x1 <= y2 && y2 <= x2)
-                    || boolinator.pleaseDo((y1 <= x1 && x1 <= y2), (y1 <= x2 && x2 <= y2));
-        }
-        return false;
+        var tokens = Arrays.stream(s.split("[,-]")).mapToInt(Integer::parseInt).toArray();
+        int x1 = tokens[0];
+        int x2 = tokens[1];
+        int y1 = tokens[2];
+        int y2 = tokens[3];
+        return boolinator.pleaseDo(x1 <= y1 && y1 <= x2, x1 <= y2 && y2 <= x2)
+                || boolinator.pleaseDo((y1 <= x1 && x1 <= y2), (y1 <= x2 && x2 <= y2));
     }
 }
