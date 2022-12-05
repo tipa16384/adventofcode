@@ -9,7 +9,7 @@
             "name": "Launch Advent",
             "request": "launch",
             "mainClass": "com.chasingdings.y2022.Advent",
-            "args": "DAY4",
+            "args": "DAY5",
             "projectName": "y2022"
         },
         {

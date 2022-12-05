@@ -10,7 +10,7 @@ def crate_me(input_str: str, is9001: bool) -> str:
             if box != " ":
                 crates[crate_num].append(box)
 
-    pattern = re.compile("move (\d+) from (\d+) to (\d+)")
+    pattern = re.compile(r"move (\d+) from (\d+) to (\d+)")
 
     # for each line from 10 to the end
     for line in input_str[10:]:
