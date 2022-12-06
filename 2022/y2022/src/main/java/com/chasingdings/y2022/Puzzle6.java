@@ -26,7 +26,7 @@ public class Puzzle6 extends AbstractPuzzle {
     }
 
     private int process(String content, int packetSize) {
-        return IntStream.range(packetSize, content.length())
+        return IntStream.range(packetSize, content.length()).parallel()
                 .mapToObj(i -> content.substring(i - packetSize, i))
                 .filter(s -> s.chars().distinct().count() == packetSize)
                 .mapToInt(content::indexOf)
