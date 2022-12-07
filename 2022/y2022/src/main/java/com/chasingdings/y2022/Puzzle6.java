@@ -2,8 +2,12 @@ package com.chasingdings.y2022;
 
 import java.util.stream.IntStream;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Puzzle6 extends AbstractPuzzle {
     private static final String DATA_FILE = "2022\\puzzle6.txt";
+    private static final Logger logger = LogManager.getLogger(Puzzle6.class);
 
     @Override
     public Object solve1(String content) {
@@ -26,6 +30,8 @@ public class Puzzle6 extends AbstractPuzzle {
     }
 
     private int process(String content, int packetSize) {
+        var testLine = content.split(EOL)[0];
+
         return IntStream.range(packetSize, content.length()).parallel()
                 .mapToObj(i -> content.substring(i - packetSize, i))
                 .filter(s -> s.chars().distinct().count() == packetSize)
