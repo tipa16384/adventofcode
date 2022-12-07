@@ -30,8 +30,6 @@ public class Puzzle6 extends AbstractPuzzle {
     }
 
     private int process(String content, int packetSize) {
-        var testLine = content.split(EOL)[0];
-
         return IntStream.range(packetSize, content.length()).parallel()
                 .mapToObj(i -> content.substring(i - packetSize, i))
                 .filter(s -> s.chars().distinct().count() == packetSize)
