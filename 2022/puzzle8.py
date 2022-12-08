@@ -1,5 +1,9 @@
 from functools import reduce
 
+def getResults(calc_view, puzzle, x, y):
+    results = [(calc_view(puzzle, x, y, dx, dy)) for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]]
+    return any([r[0] for r in results]), reduce(lambda a, b: a * b, [r[1] for r in results])
+
 def calc_view(puzzle, start_x, start_y, dx, dy):
     height = len(puzzle)
     width = len(puzzle[0])
@@ -23,30 +27,14 @@ def calc_view(puzzle, start_x, start_y, dx, dy):
 
     return is_visible, num_trees
 
-dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
 with open("2022\\puzzle8.txt") as f:
     puzzle = f.read().splitlines()
 
-width = len(puzzle[0])
-height = len(puzzle)
-
-# make grid of height and width
-vis_grid = [[False for _ in range(width)] for _ in range(height)]
-
-# make int grid of height and width
-grid = [[1 for _ in range(width)] for _ in range(height)]
-
-# for each cell in puzzle
-for y in range(height):
-    for x in range(width):
-        results = [(calc_view(puzzle, x, y, dx, dy)) for dx, dy in dirs]
-        vis_grid[y][x] = any([r[0] for r in results])
-        grid[y][x] = reduce(lambda x, y: x * y, [r[1] for r in results])
-
+grid = [[getResults(calc_view, puzzle, x, y) for x in range(len(puzzle[0]))] for y in range(len(puzzle))]
 
 # count the number of True values in vis_grid
-print("Part 1: {}".format(sum([sum(row) for row in vis_grid])))
+print("Part 1: {}".format(sum([sum(r[0] for r in row) for row in grid])))
 
 # find the max value in grid
-print("Part 2: {}".format(max([max(row) for row in grid])))
+print("Part 2: {}".format(max([max(r[1] for r in row) for row in grid])))
