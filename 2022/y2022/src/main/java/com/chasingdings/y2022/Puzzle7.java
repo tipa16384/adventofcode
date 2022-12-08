@@ -52,7 +52,7 @@ public class Puzzle7 extends AbstractPuzzle {
 
     @Override
     public String getPuzzleName() {
-        return "Day 7 - Out of Disk Space";
+        return "Day 7 - No Space Left On Device";
     }
 
     /**
