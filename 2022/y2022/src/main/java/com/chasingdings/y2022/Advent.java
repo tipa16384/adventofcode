@@ -11,7 +11,7 @@ public class Advent {
     private static final Logger logger = LogManager.getLogger(Advent.class);
     private static final String LOG4J2_CONF = "2022\\y2022\\log4j2.xml";
     
-    static final int RUN_TIMES = 1;
+    static final int RUN_TIMES = 1000;
     
     public static void main(String[] args) {
         File file = new File(LOG4J2_CONF);

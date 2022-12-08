@@ -32,6 +32,13 @@
       <artifactId>commons-collections4</artifactId>
       <version>4.4</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
