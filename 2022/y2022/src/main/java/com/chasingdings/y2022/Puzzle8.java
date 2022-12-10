@@ -6,25 +6,20 @@ import java.util.List;
 public class Puzzle8 extends AbstractPuzzle {
     private static final String DATA_FILE = "2022\\puzzle8.txt";
 
-    private List<TreeInfo> grid = null;
+    private List<TreeInfo> grid;
 
     @Override
     public Object solve1(String content) {
-        parsePuzzle(content);
         return grid.stream().mapToInt(r -> r.visible).sum();
     }
 
     @Override
     public Object solve2(String content) {
-        parsePuzzle(content);
         return grid.stream().mapToInt(r -> r.treeCount).max().getAsInt();
     }
 
-    private void parsePuzzle(String content) {
-        if (grid != null) {
-            return;
-        }
-
+    @Override
+    public void preprocess(String content) {
         var puzzle = getInputDataByLine(content);
 
         grid = new ArrayList<>();

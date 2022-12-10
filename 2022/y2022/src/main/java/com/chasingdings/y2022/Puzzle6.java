@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 public class Puzzle6 extends AbstractPuzzle {
     private static final String DATA_FILE = "2022\\puzzle6.txt";
-    private static final Logger logger = LogManager.getLogger(Puzzle6.class);
 
     @Override
     public Object solve1(String content) {

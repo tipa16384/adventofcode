@@ -10,4 +10,5 @@ public interface Puzzle {
     String getDataFilePath();
     Object solve1(String content);
     Object solve2(String content);
+    void preprocess(String content);
 }

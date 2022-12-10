@@ -25,4 +25,9 @@ public abstract class AbstractPuzzle implements Puzzle {
     List<String> getInputDataByLine(String content) {
         return Arrays.asList(content.split(EOL));
     }
+
+    @Override
+    public void preprocess(String content) {
+        // Override this method to do any preprocessing of the input data
+    }
 }

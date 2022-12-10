@@ -11,7 +11,7 @@ public class Advent {
     private static final Logger logger = LogManager.getLogger(Advent.class);
     private static final String LOG4J2_CONF = "2022\\y2022\\log4j2.xml";
     
-    static final int RUN_TIMES = 10000;
+    static final int RUN_TIMES = 1000;
     
     public static void main(String[] args) {
         File file = new File(LOG4J2_CONF);
@@ -36,6 +36,8 @@ public class Advent {
         try {
             logger.info("Reading in puzzle data...");
             var content = puzzle.readData(puzzle.getDataFilePath());
+            logger.info("Preprocessing puzzle data...");
+            puzzle.preprocess(content);
             logger.info("Solving part 1...");
             // calculate elapsed time for next statement
             long elapsedTime = 0;
