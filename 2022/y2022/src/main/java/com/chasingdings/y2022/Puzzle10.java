@@ -9,32 +9,32 @@ import java.util.stream.IntStream;
 
 public class Puzzle10 extends AbstractPuzzle {
     private static final String DATA_FILE = "2022\\puzzle10.txt";
+    private static final int WIDTH = 40;
+    private static final int HEIGHT = 6;
 
     private List<State> programState;
 
     @Override
     public Object solve1(String content) {
-        return IntStream.range(0, 6)
-                .map(clock -> clock * 40 + 20)
+        return IntStream.range(0, HEIGHT)
+                .map(clock -> clock * WIDTH + 20)
                 .map(clock -> stateAt(programState, clock).x * clock)
                 .sum();
     }
 
     @Override
     public Object solve2(String content) {
-        final int width = 40;
-        final int height = 6;
-        
-        final var spritePos = IntStream.range(0, width * height)
+        final var spritePos = IntStream.range(0, WIDTH * HEIGHT)
                 .mapToObj(pixel -> stateAt(programState, pixel + 1))
                 .collect(Collectors.toList());
-        final var screen = IntStream.range(0, width * height)
-                .mapToObj(pixel -> spritePos.get(pixel).x - 1 <= (pixel % width)
-                        && (pixel % width) <= spritePos.get(pixel).x + 1 ? "#" : ".")
+
+        final var screen = IntStream.range(0, WIDTH * HEIGHT)
+                .mapToObj(pixel -> spritePos.get(pixel).x - 1 <= (pixel % WIDTH)
+                        && (pixel % WIDTH) <= spritePos.get(pixel).x + 1 ? "#" : ".")
                 .collect(Collectors.joining());
 
-                return "\n" + IntStream.range(0, height)
-                .mapToObj(i -> screen.substring(i * width, (i + 1) * width))
+        return "\n" + IntStream.range(0, HEIGHT)
+                .mapToObj(i -> screen.substring(i * WIDTH, (i + 1) * WIDTH))
                 .collect(Collectors.joining("\n"));
     }
 
