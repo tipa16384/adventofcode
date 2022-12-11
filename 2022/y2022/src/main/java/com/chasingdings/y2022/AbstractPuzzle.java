@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AbstractPuzzle implements Puzzle {
     @Override
@@ -24,6 +25,10 @@ public abstract class AbstractPuzzle implements Puzzle {
     
     List<String> getInputDataByLine(String content) {
         return Arrays.asList(content.split(EOL));
+    }
+
+    List<Long> evalList(String content) {
+        return Arrays.asList(content.split(",")).stream().map(z -> Long.parseLong(z.strip())).collect(Collectors.toList());
     }
 
     @Override

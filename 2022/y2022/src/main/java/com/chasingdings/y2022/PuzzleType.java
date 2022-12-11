@@ -10,5 +10,6 @@ public enum PuzzleType {
     DAY7,
     DAY8,
     DAY9,
-    DAY10
+    DAY10,
+    DAY11
 }

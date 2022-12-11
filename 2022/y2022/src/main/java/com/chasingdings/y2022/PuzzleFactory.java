@@ -35,6 +35,9 @@ public class PuzzleFactory {
             case DAY10:
                 puzzle = new Puzzle10();
                 break;
+            case DAY11:
+                puzzle = new Puzzle11();
+                break;
         }
 
         return puzzle;
