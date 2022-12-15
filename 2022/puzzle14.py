@@ -22,7 +22,7 @@ def add_line_segment(x1, y1, x2, y2):
         for x in range(min(x1, x2), max(x1, x2)+1):
             all_world.add((x, y1))
 
-def drop_sand(bounds, part2=False):
+def drop_sand(bounds):
     x, y = 500, 0
     while True:
         if (x, y) in all_world or y > bounds:
@@ -46,6 +46,6 @@ for part2 in False, True:
 
     num_sand = 0
     start = time_ns()
-    while drop_sand(bounds, part2): num_sand += 1
+    while drop_sand(bounds): num_sand += 1
 
     print (f"{'Part 2' if part2 else 'Part 1'}: {num_sand} sand in {(time_ns() - start)/1e6}ms")
