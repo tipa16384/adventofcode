@@ -1,7 +1,34 @@
-from time import time_ns
+from functools import lru_cache
+from time import sleep, time_ns
 import re
 from collections import defaultdict
 from itertools import combinations
+from threading import Thread
+
+class SensorThread(Thread):
+    def __init__(self, sensor, sensor_data):
+        super().__init__()
+        self.sensor = sensor
+        self.sensor_data = sensor_data
+        self.result = None
+        self.stop_me = False
+
+    def run(self):
+        self.result = self.find_gap_for_sensor()
+
+    def find_gap_for_sensor(self):
+        # print ("sensor", sensor)
+        skipping = None
+        for c in periphery(self.sensor):
+            if self.stop_me: return None
+            if skipping and is_inside(skipping, *c):
+                continue
+            sleep(0)
+            inside_s = is_inside(self.sensor_data, *c)
+            if not inside_s:
+                return c[0] * 4000000 + c[1]
+            skipping = [inside_s]
+        return None
 
 
 def manhattan_distance(x1, y1, x2, y2):
@@ -20,7 +47,7 @@ def read_input():
     return sensor_data
 
 
-def query_sensors(sensor_data, row):
+def query_sensors(row):
     scanned_positions = set()
 
     for sx, sy, bx, by, mdist in sensor_data:
@@ -34,62 +61,66 @@ def query_sensors(sensor_data, row):
 
     return len(scanned_positions)
 
-
-def bounds_add(s, x, y):
-    if x >= 0 and x <= 4000000 and y >= 0 and y <= 4000000:
-        s.add((x, y))
+def is_in_bounds(z):
+    return z >= 0 and z <= 4000000
 
 
 def periphery(sensor):
-    p = set()
     # return the list of points on the periphery of the sensor
     sx, sy, _, _, mdist = sensor
     for i in range(mdist+2):
-        bounds_add(p, sx-mdist-1+i, sy-i)
-        bounds_add(p, sx+mdist+1-i, sy-i)
-        bounds_add(p, sx-mdist-1+i, sy+i)
-        bounds_add(p, sx+mdist+1-i, sy+i)
-    return p
-
+        if is_in_bounds(sx-mdist-1+i):
+            if is_in_bounds(sy-i):
+                yield (sx-mdist-1+i, sy-i)
+            if is_in_bounds(sy+i):
+                yield (sx-mdist-1+i, sy+i)
+        if is_in_bounds(sx+mdist+1-i):
+            if is_in_bounds(sy-i):
+                yield (sx+mdist+1-i, sy-i)
+            if is_in_bounds(sy+i):
+                yield (sx+mdist+1-i, sy+i)
 
 def is_inside(sensor_data, x, y):
-    for sx, sy, _, _, mdist in sensor_data:
+    for sensor in sensor_data:
+        sx, sy, _, _, mdist = sensor
         if manhattan_distance(sx, sy, x, y) <= mdist:
-            return True
-    return False
+            return sensor
+    return None
 
 
-def find_gaps(sensor_data):
-    peripheries = {}
-    candidates = defaultdict(int)
-
+def find_gaps():
     for s in sensor_data:
-        peripheries[s] = periphery(s)
-
-    # intersection of sensor peripheries
-    for s1, s2 in combinations(sensor_data, 2):
-        # print (s1, s2, s3, s4)
-        p1, p2 = peripheries[s1], peripheries[s2]
-        z = p1.intersection(p2)
-        if z:
-            for zz in z:
-                candidates[zz] += 1
-
-    # find the candidate with the most sensors
-    for c in candidates:
-        if candidates[c] >= 4:
-            if not is_inside(sensor_data, *c):
+        print ("sensor", s)
+        skipping = None
+        for c in periphery(s):
+            if skipping and is_inside(skipping, *c):
+                continue
+            inside_s = is_inside(sensor_data, *c)
+            if not inside_s:
                 return c[0] * 4000000 + c[1]
-
-    return 0
-
+            skipping = [inside_s]
 
 sensor_data = read_input()
 
 start = time_ns()
-part1 = query_sensors(sensor_data, 2000000)
+part1 = query_sensors(2000000)
 print(f"Part 1: {part1} in {(time_ns() - start)/1e6}ms")
 
 start = time_ns()
-part2 = find_gaps(sensor_data)
-print(f"Part 2: {part2} in {(time_ns() - start)/1e9}s")
+
+threads = [SensorThread(sensor, sensor_data) for sensor in sensor_data]
+for t in threads:
+    t.start()
+
+# wait for any thread to have a result
+result = None
+while not result:
+    for t in threads:
+        if t.result:
+            result = t.result
+    sleep(0.1)
+
+print(f"Part 2: {result} in {(time_ns() - start)/1e9}s")
+
+for t in threads:
+    t.stop_me = True
