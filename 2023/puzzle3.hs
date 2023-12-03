@@ -9,17 +9,6 @@ main = do
         partNumbers = map (\(row, col, len, num) -> num) partNumbersTuples
     putStrLn $ "Part 1: " ++ show (sum partNumbers)
 
--- given a list of lines, return (row, col) coordinates of every '*'
-getAsteriskCoords :: [String] -> [(Int, Int)]
-getAsteriskCoords lines = do
-    let height = length lines
-        width = length (head lines)
-    [(r, c) | r <- [0..height - 1], c <- [0..width - 1], lines !! r !! c == '*']
-
--- given a coordinate, return a list of number tuples that have that coordinate in checkSurrounding
-getNumbersWithCoord :: (Int, Int) -> [(Int, Int, Int, Int)] -> [(Int, Int, Int, Int)]
-getNumbersWithCoord (row, col) numbers = filter (\(r, c, len, num) -> (row, col) `elem` getSurroundingCoords (r, c, len, num) (length numbers, length numbers)) numbers
-
 -- function that takes a (row, col, len, num) tuple and a list of lines and calls
 -- getSurroundingCoords to get the surrounding coordinates of the number
 -- and returns true if any of the surrounding characters are not digits and are not '.'

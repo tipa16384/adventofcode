@@ -23,8 +23,8 @@ def extractNumbers(line, row):
 # string
 def getAdjacent(height, width, number):
     adjacentCoords = [(number[0] - 1, number[1] -1 + x) for x in range(number[2]+2)] + \
-                     [(number[0] + 1, number[1] -1 + x) for x in range(number[2]+2)] + \
-                     [(number[0], number[1] - 1), (number[0], number[1] + number[2])]
+                    [(number[0] + 1, number[1] -1 + x) for x in range(number[2]+2)] + \
+                    [(number[0], number[1] - 1), (number[0], number[1] + number[2])]
     return [x for x in adjacentCoords if x[0] >= 0 and x[0] < height and x[1] >= 0 and x[1] < width]
 
 # return True if the character is not a digit and is not a period
