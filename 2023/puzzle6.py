@@ -7,11 +7,10 @@ def solve(time_distance: tuple) -> int:
     d = (b**2) - (4*time_distance[1])
     return ceil((b + d**0.5) / 2) - ceil((b - d**0.5) / 2)
 
-# def combobulate() -> tuple:
-#     l = int(''.join([str(s[0]) for s in puzzle]))
-#     r = int(''.join([str(s[1]) for s in puzzle]))
-#     return (l, r)
+def combobulate() -> tuple:
+    l = int(''.join([str(s[0]) for s in puzzle]))
+    r = int(''.join([str(s[1]) for s in puzzle]))
+    return (l, r)
 
 print ("Part 1:", prod([solve(td) for td in puzzle]))
-# print ("Part 2:", solve(combobulate()))
-print ("Part 2:", solve((52947594, 426137412791216)))
+print ("Part 2:", solve(combobulate()))
