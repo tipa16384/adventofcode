@@ -1,18 +1,12 @@
 from itertools import groupby
 
-def part1():
-    print ("Part 1:", play_game(translatePart1, "23456789TJQKA"))
-
-def part2():
-    print ("Part 2:", play_game(translatePart2, "J23456789TQKA"))
-
 hex_values =  "0123456789ABC"
 
 def play_game(translator, card_values):
     data = [(translator(token[0], card_values), int(token[1])) for line in readData() for token in [line.strip().split()]]
     # sort the data by the first element of each tuple
     data = sorted(data, key=lambda x: x[0])
-    # value is the sum of the second element of each tuple multiplies by its index in data +1
+    # value is the sum of the second element of each tuple multiplied by its index in data + 1
     return sum([(i + 1) * x[1] for i, x in enumerate(data)])
 
 def translatePart1(hand: str, card_values: str) -> int:
@@ -42,8 +36,6 @@ def hand_to_groups(hand: str) -> list:
     return sorted(groups, key=lambda x: len(x), reverse=True)
 
 def score(groups: list, card_values: str, hand: str) -> int:
-    # sort groups by the length of the sublists, highest first
-    groups = sorted(groups, key=lambda x: len(x), reverse=True)
     match len(groups):
         case 5: value = '1' # high card
         case 4: value = '2' # one pair
@@ -61,7 +53,5 @@ def readData():
         return f.read().splitlines()
 
 if __name__ == "__main__":
-    part1()
-    part2()
-
-
+    print ("Part 1:", play_game(translatePart1, "23456789TJQKA"))
+    print ("Part 2:", play_game(translatePart2, "J23456789TQKA"))
