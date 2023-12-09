@@ -1,18 +1,16 @@
 from itertools import groupby
 
-hex_values =  "0123456789ABC"
-
 def play_game(translator, card_values):
-    data = [(translator(token[0], card_values), int(token[1])) for line in readData() for token in [line.strip().split()]]
-    # sort the data by the first element of each tuple
-    data = sorted(data, key=lambda x: x[0])
+    data = [(translator(token[0], card_values), int(token[1])) \
+            for line in readData() \
+                for token in [line.strip().split()]]
     # value is the sum of the second element of each tuple multiplied by its index in data + 1
-    return sum([(i + 1) * x[1] for i, x in enumerate(data)])
+    return sum([i * x[1] for i, x in enumerate(sorted(data), start=1)])
 
-def translatePart1(hand: str, card_values: str) -> int:
+def translatePart1(hand: str, card_values: str) -> str:
     return score(hand_to_groups(hand), card_values, hand)
 
-def translatePart2(hand: str, card_values: str) -> int:
+def translatePart2(hand: str, card_values: str) -> str:
     groups = hand_to_groups(hand)
     # if there is more than one group, and the first group has a 'J' in it, merge 
     # the first and second groups
@@ -36,22 +34,14 @@ def hand_to_groups(hand: str) -> list:
     return sorted(groups, key=lambda x: len(x), reverse=True)
 
 def score(groups: list, card_values: str, hand: str) -> int:
-    match len(groups):
-        case 5: value = '1' # high card
-        case 4: value = '2' # one pair
-        case 3: value = '4' if len(groups[0]) == 3 else '3' # three of a kind or two pair
-        case 2: value = '6' if len(groups[0]) == 4 else '5' # four of a kind or full house
-        case 1: value = '7' # five of a kind
+    value = str(5 + len(groups[0]) - len(groups))
     # in the hand, translate all T to A, J to B, Q to C, K to D, A to E
-    hexhand = value + ''.join([hex_values[card_values.index(card)] for card in hand])
-
-    return int(hexhand, 16)
+    return value + ''.join(["0123456789ABC"[card_values.index(card)] for card in hand])
 
 # readData: read the data file into a list of lists stripping newlines
 def readData():
     with open("puzzle7.dat") as f:
         return f.read().splitlines()
 
-if __name__ == "__main__":
-    print ("Part 1:", play_game(translatePart1, "23456789TJQKA"))
-    print ("Part 2:", play_game(translatePart2, "J23456789TQKA"))
+print ("Part 1:", play_game(translatePart1, "23456789TJQKA"))
+print ("Part 2:", play_game(translatePart2, "J23456789TQKA"))
