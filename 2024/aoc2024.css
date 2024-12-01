@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.container textarea,
+.container select {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.container textarea {
+  height: 150px;
+  resize: none;
+}
+.container .output {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.container .output .error {
+  color: red;
+}
+.container button {
+  padding: 10px 15px;
+  font-size: 16px;
+  color: white;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.container button:hover {
+  background-color: #0056b3;
+}
+.container button.reset {
+  background-color: #6c757d;
+}
+.container button.reset:hover {
+  background-color: #5a6268;
+}/*# sourceMappingURL=aoc2024.css.map */
