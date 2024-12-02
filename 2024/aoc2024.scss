@@ -9,6 +9,7 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 $border-radius: 5px;
 $border-color: #ccc;
 $output-bg: #f8f9fa;
+$container-width: 600px;
 
 @mixin button-styles($bg-color, $hover-color) {
   padding: 10px 15px;
@@ -37,7 +38,7 @@ h1 {
 }
 
 .container {
-  max-width: 600px;
+  max-width: $container-width;
   margin: 0 auto;
   background: white;
   padding: 20px;
@@ -46,7 +47,7 @@ h1 {
 
   textarea,
   select {
-    width: 100%;
+    width: $container-width;
     font-size: 16px;
     padding: 10px;
     border: 1px solid $border-color;
@@ -56,6 +57,7 @@ h1 {
 
   textarea {
     height: 150px;
+    width: $container-width - 20px;
     resize: none;
   }
 

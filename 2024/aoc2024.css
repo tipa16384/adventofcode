@@ -20,7 +20,7 @@ h1 {
 }
 .container textarea,
 .container select {
-  width: 100%;
+  width: 600px;
   font-size: 16px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -29,6 +29,7 @@ h1 {
 }
 .container textarea {
   height: 150px;
+  width: 580px;
   resize: none;
 }
 .container .output {
