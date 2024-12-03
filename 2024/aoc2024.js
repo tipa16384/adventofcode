@@ -1,5 +1,5 @@
 // Define endpoint
-const baseURL = "http://127.0.0.1:5000/2024/";
+const baseURL = "http://127.0.0.1:5000/";
 
 // Get references to elements
 const inputData = document.getElementById("inputData");
