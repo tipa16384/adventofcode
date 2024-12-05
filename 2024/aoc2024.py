@@ -54,6 +54,16 @@ def day_4_rest():
     return build_response(*run_threads((word_search, data, 'XMAS', grid_width, grid_height),
                                  (x_search, data, 'MAS', grid_width, grid_height)))
 
+@app.route('/2024/5', methods=['POST'])
+def day_5_rest():
+    from day5funcs import day5_data, alles_in_Ordnung, mach_es_richtig
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+    page_ordering_map, updates = day5_data(file)
+    return build_response(*run_threads((alles_in_Ordnung, page_ordering_map, updates), 
+                                       (mach_es_richtig, page_ordering_map, updates)))
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2
