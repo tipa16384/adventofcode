@@ -62,6 +62,17 @@ def day_5_rest():
         return file, 400
     return build_response(*beide_teile(*day5_data(file)))
 
+@app.route('/2024/6', methods=['POST'])
+def day_6_rest():
+    from day6funcs import day6_data, find_path, find_obstructions
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+    data = day6_data(file)
+    part1, visited_cells = find_path(*data)
+    part2 = find_obstructions(*data, visited_cells)
+    return build_response(part1, part2)
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2
