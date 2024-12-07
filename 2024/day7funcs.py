@@ -1,5 +1,6 @@
 import time
 import concurrent.futures
+from multiprocessing import Pool
 
 def day7_data(file) -> list:
     lines = file.read().decode('utf-8').splitlines()
@@ -25,13 +26,16 @@ def insert_operands(result, operands, operators, value):
             return True
     return False
 
-def worker(result, operands, operators: list) -> int:
+global_operators = []
+
+def worker(line) -> int:
+    result, operands, operators = line
     return result if insert_operands(result, operands[1:], operators, operands[0]) else 0
 
 def parser(data: list, operators: list) -> int:
+    data_with_operators = [(result, operands, operators) for result, operands in data]
     start = time.time()
-    with concurrent.futures.ProcessPoolExecutor() as executor:
-        results = [executor.submit(worker, result, operands, operators) for result, operands in data]
-        result = sum(result.result() for result in results)
+    with Pool() as pool:
+        result = sum(pool.map(worker, data_with_operators))
     print(f'Parser: {time.time() - start}')
     return result
