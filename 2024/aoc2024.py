@@ -73,6 +73,17 @@ def day_6_rest():
     part2 = find_obstructions(*data, visited_cells)
     return build_response(part1, part2)
 
+@app.route('/2024/7', methods=['POST'])
+def day_7_rest():
+    from day7funcs import day7_data, parser
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+    data = day7_data(file)
+    part1 = parser(data, ['+', '*'])
+    part2 = parser(data, ['+', '*', '||'])
+    return build_response(part1, part2)
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2
@@ -83,7 +94,7 @@ def day20162_rest():
     return build_response(*run_threads((day20162_part1, data), (day20162_part2, data)))
 
 def run_threads(t1_args: tuple, t2_args: tuple) -> tuple:
-    with concurrent.futures.ThreadPoolExecutor() as executor:
+    with concurrent.futures.ProcessPoolExecutor() as executor:
         t1 = executor.submit(*t1_args)
         t2 = executor.submit(*t2_args)
         return t1.result(), t2.result()
