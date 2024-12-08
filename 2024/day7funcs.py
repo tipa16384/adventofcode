@@ -35,7 +35,8 @@ def worker(line) -> int:
 def parser(data: list, operators: list) -> int:
     data_with_operators = [(result, operands, operators) for result, operands in data]
     start = time.time()
-    with Pool() as pool:
-        result = sum(pool.map(worker, data_with_operators))
+    # with Pool() as pool:
+    #     result = sum(pool.map(worker, data_with_operators))
+    result = sum(map(worker, data_with_operators))
     print(f'Parser: {time.time() - start}')
     return result

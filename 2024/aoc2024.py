@@ -84,6 +84,17 @@ def day_7_rest():
     part2 = parser(data, ['+', '*', '||'])
     return build_response(part1, part2)
 
+@app.route('/2024/8', methods=['POST'])
+def day_8_rest():
+    from day8funcs import day8_data, day8part1, day8part2
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+    data, grid_height, grid_width = day8_data(file)
+    part1 = day8part1(data, grid_height, grid_width)
+    part2 = day8part2(data, grid_height, grid_width)
+    return build_response(part1, part2)
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2
