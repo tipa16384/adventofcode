@@ -12,8 +12,7 @@ def day9data(file) -> list:
 
     return file_system
 
-def day9part1(file_system_pristine: list) -> int:
-    file_system = file_system_pristine.copy()
+def day9part1(file_system: list) -> int:
     checksum = 0
     start = 0
     end = len(file_system) - 1
@@ -65,7 +64,7 @@ def run_generator(file_system: list):
                 yield (current_run, i + 1, count)
             current_run = token
             count = 1
-    if current_run is not None:
+    if current_run is not None and current_run != -1:
         yield (current_run, 0, count)
 
 def free_generator(file_system: list):
