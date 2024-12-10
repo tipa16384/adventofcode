@@ -95,6 +95,17 @@ def day_8_rest():
     part2 = day8part2(data, grid_height, grid_width)
     return build_response(part1, part2)
 
+@app.route('/2024/9', methods=['POST'])
+def day_9_rest():
+    from day9funcs import day9data, day9part1, day9part2
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+    file_system = day9data(file)
+    part1 = day9part1(file_system)
+    part2 = day9part2(file_system)
+    return build_response(part1, part2)
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2
