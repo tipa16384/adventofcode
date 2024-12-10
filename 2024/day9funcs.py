@@ -30,22 +30,28 @@ def day9part1(file_system_pristine: list) -> int:
     return checksum
 
 def day9part2(file_system: list) -> int:
-    run_file_system = file_system.copy()
+    checksum = 0
 
-    for run in run_generator(run_file_system):
-        for free in free_generator(file_system):
+    space_runs = list(free_generator(file_system))
+
+    for run in run_generator(file_system):
+        moved = False
+        for i in range(len(space_runs)):
+            free = space_runs[i]
             if run[1] < free[1]: break
             if run[2] > free[2]: continue
             free_start = free[1]
-            run_start = run[1]
-            for i in range(run[2]):
-                file_system[free_start+i] = run[0]
-                file_system[run_start+i] = -1
+            checksum = sum_check(checksum, run[0], free_start, run[2])
+            space_runs[i] = (-1, free_start + run[2], free[2] - run[2])
+            moved = True
             break
-
-    checksum = sum(i * val for i, val in enumerate(file_system) if val > -1)
+        if not moved:
+            checksum = sum_check(checksum, run[0], run[1], run[2])
 
     return checksum
+
+def sum_check(checksum, file_id, start, length):
+    return checksum + sum(file_id * (start + i) for i in range(length))
 
 def run_generator(file_system: list):
     current_run = None
@@ -55,7 +61,7 @@ def run_generator(file_system: list):
         if token == current_run:
             count += 1
         else:
-            if current_run is not None:
+            if current_run is not None and current_run != -1:
                 yield (current_run, i + 1, count)
             current_run = token
             count = 1
