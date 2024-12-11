@@ -116,6 +116,17 @@ def day_10_rest():
     part1, part2 = day10parts(data)
     return build_response(part1, part2)
 
+@app.route('/2024/11', methods=['POST'])
+def day_11_rest():
+    from day11funcs import day11data, day11parts
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+    data = day11data(file)
+    part1 = day11parts(data, 25)
+    part2 = day11parts(data, 75)
+    return build_response(part1, part2)
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2
