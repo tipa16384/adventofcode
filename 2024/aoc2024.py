@@ -169,6 +169,18 @@ def day_14_rest():
     steps = part2(data, width, height)
     return build_response(safety, steps)
 
+@app.route('/2024/15', methods=['POST'])
+def day_15_rest():
+    from day15funcs import day15data, part1, part2
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+
+    rocks, boxes, robot, moves = day15data(file)
+    part1_solve = part1(rocks, boxes, robot, moves)
+    part2_solve = part2(rocks, boxes, robot, moves)
+    return build_response(part1_solve, part2_solve)
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2
