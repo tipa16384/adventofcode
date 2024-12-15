@@ -29,11 +29,19 @@
             <option value="2024/10">Day 10: Hoof It</option>
             <option value="2024/11">Day 11: Plutonian Pebbles</option>
             <option value="2024/12">Day 12: Garden Groups</option>
-            <option value="2024/13" selected>Day 13: Claw Contraption</option>
+            <option value="2024/13">Day 13: Claw Contraption</option>
+            <option value="2024/14" selected>Day 14: Restroom Redoubt</option>
             <option value="2016/2">Day 2 (2016): Bathroom Security</option>
             <!-- Add more days here as needed -->
         </select>
+        <div id="dimensions">
+            <label for="width">Width:</label>
+            <input type="number" id="width" name="width">
+            <label for="height">Height:</label>
+            <input type="number" id="height" name="height">
+        </div>
         <textarea id="inputData" placeholder="Paste your input data here..."></textarea>
+
         <button id="submitBtn">Submit</button>
         <button id="resetBtn" class="reset">Reset</button>
         <div id="output" class="output" style="display: none;"></div>

@@ -60,6 +60,24 @@ h1 {
     width: $container-width - 20px;
     resize: none;
   }
+    
+  #dimensions {
+    margin-bottom: 15px;
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: normal;
+    }
+    input {
+      width: calc(50% - 10px);
+      padding: 10px;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+  }
 
   .output {
     margin-top: 20px;

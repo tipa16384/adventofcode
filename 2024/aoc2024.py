@@ -15,6 +15,13 @@ def get_file_from_request():
         return jsonify({'error': error_message}), False
     return file, True
 
+def get_dimensions_from_request():
+    width = request.form.get('width')
+    height = request.form.get('height')
+    if not width or not height:
+        return jsonify({'error': 'Missing width or height'}), None, False
+    return int(width), int(height), True
+
 @app.route('/2024/1', methods=['POST'])
 def post_sum_diffs():
     from day1funcs import sum_diffs, sum_similar, day1_data
@@ -146,6 +153,21 @@ def day_13_rest():
         return file, 400
     data = day13data(file)
     return build_response(parts(data), parts(data, 10000000000000))
+
+@app.route('/2024/14', methods=['POST'])
+def day_14_rest():
+    from day14funcs import day14data, part1, part2
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+    width, height, success = get_dimensions_from_request()
+    if not success:
+        return width, 400
+
+    data = day14data(file)
+    safety = part1(data, width, height)
+    steps = part2(data, width, height)
+    return build_response(safety, steps)
 
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():

@@ -6,6 +6,26 @@ const inputData = document.getElementById("inputData");
 const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
 const outputDiv = document.getElementById("output");
+const daySelect = document.getElementById("daySelect");
+const dimensionsDiv = document.getElementById("dimensions");
+
+
+// Function to handle the visibility of the dimensions div
+function handleDimensionsVisibility() {
+    if (daySelect.value === "2024/14") {
+        dimensionsDiv.style.display = "block";
+    } else {
+        dimensionsDiv.style.display = "none";
+    }
+}
+
+// Add event listener to the daySelect dropdown
+daySelect.addEventListener("change", handleDimensionsVisibility);
+
+// Check initial selection on page load
+document.addEventListener("DOMContentLoaded", () => {
+    handleDimensionsVisibility();
+});
 
 // Function to reset the input box and output
 resetBtn.addEventListener("click", () => {
@@ -37,6 +57,13 @@ submitBtn.addEventListener("click", async () => {
         // Use FormData to send the file with a name
         const formData = new FormData();
         formData.append("file", fileBlob, "file");
+        // add the values of width and height
+        if (selectedDay === "2024/14") {
+            const width = document.getElementById("width").value;
+            const height = document.getElementById("height").value;
+            formData.append("width", width);
+            formData.append("height", height);
+        }
 
         // Send POST request
         const response = await fetch(endpoint, {
