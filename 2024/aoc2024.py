@@ -190,7 +190,7 @@ def day_16_rest():
 
     data = day16data(file)
     part1_score = part1(data)
-    part2_score = part2(data)
+    part2_score = part2(data, part1_score)
     return build_response(part1_score, part2_score)
 
 @app.route('/2016/2', methods=['POST'])

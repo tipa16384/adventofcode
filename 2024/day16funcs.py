@@ -45,11 +45,10 @@ def part1(data: list) -> int:
         if data[new_pos[0]][new_pos[1]] != '#':
             heapq.heappush(queue, (steps + 1, new_pos, direction))
 
-    print("Time taken: ", time.time() - start_time)
+    print("Part 1 time taken: ", time.time() - start_time)
     return score
 
-def part2(data: list) -> int:
-    best_time = part1(data)
+def part2(data: list, best_time) -> int:
     start_time = time.time()
     start = find_position(data, "S")
     direction = 'E'
@@ -81,6 +80,6 @@ def part2(data: list) -> int:
                 if data[new_pos[0]][new_pos[1]] != '#':
                     heapq.heappush(queue, (steps + 1, new_pos, direction, path + [new_pos]))
 
-    print("Time taken: ", time.time() - start_time)
+    print("Part 2 time taken: ", time.time() - start_time)
 
     return len(path_positions)
