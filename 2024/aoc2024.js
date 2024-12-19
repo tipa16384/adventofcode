@@ -12,7 +12,7 @@ const dimensionsDiv = document.getElementById("dimensions");
 
 // Function to handle the visibility of the dimensions div
 function handleDimensionsVisibility() {
-    if (daySelect.value === "2024/14") {
+    if (daySelect.value === "2024/14" || selectedDay === "2024/18") {
         dimensionsDiv.style.display = "block";
     } else {
         dimensionsDiv.style.display = "none";
@@ -58,7 +58,7 @@ submitBtn.addEventListener("click", async () => {
         const formData = new FormData();
         formData.append("file", fileBlob, "file");
         // add the values of width and height
-        if (selectedDay === "2024/14") {
+        if (selectedDay === "2024/14" || selectedDay === "2024/18") {
             const width = document.getElementById("width").value;
             const height = document.getElementById("height").value;
             formData.append("width", width);
