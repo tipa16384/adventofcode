@@ -220,6 +220,18 @@ def day_18_rest():
     part2_solve = part2(data, width, height)
     return build_response(part1_solve, part2_solve)
 
+@app.route('/2024/19', methods=['POST'])
+def day_19_rest():
+    from day19funcs import day19data, part1, part2
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+
+    patterns, designs = day19data(file)
+    part1_solve = part1(patterns, designs)
+    part2_solve = part2(patterns, designs)
+    return build_response(part1_solve, part2_solve)
+
 @app.route('/2016/2', methods=['POST'])
 def day20162_rest():
     from p20162 import day20162_data, day20162_part1, day20162_part2

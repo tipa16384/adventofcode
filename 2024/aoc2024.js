@@ -12,7 +12,7 @@ const dimensionsDiv = document.getElementById("dimensions");
 
 // Function to handle the visibility of the dimensions div
 function handleDimensionsVisibility() {
-    if (daySelect.value === "2024/14" || selectedDay === "2024/18") {
+    if (daySelect.value === "2024/14" || daySelect.value === "2024/18") {
         dimensionsDiv.style.display = "block";
     } else {
         dimensionsDiv.style.display = "none";
