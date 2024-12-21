@@ -1,6 +1,8 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file, make_response
 from flask_cors import CORS
 import concurrent.futures
+import os
+from makeindex import generate_index
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +23,24 @@ def get_dimensions_from_request():
     if not width or not height:
         return jsonify({'error': 'Missing width or height'}), None, False
     return int(width), int(height), True
+
+@app.route('/', methods=['GET'])
+def index():
+    generate_index()  # Assuming this function generates the file
+    response = make_response(send_file('aoc2024_rendered.html'))
+    # Add headers to prevent caching
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '-1'
+    return response
+
+@app.route('/files/<filename>', methods=['GET'])
+def get_file(filename):
+    valid_files = ['aoc2024.html', 'aoc2024.css', 'aoc2024.js']
+    if filename in valid_files:
+        return send_file(os.path.join(os.getcwd(), "2024", filename))
+    else:
+        return jsonify({'error': 'File not found'}), 404
 
 @app.route('/2024/1', methods=['POST'])
 def post_sum_diffs():
@@ -227,9 +247,21 @@ def day_19_rest():
     if not success:
         return file, 400
 
-    patterns, designs = day19data(file)
-    part1_solve = part1(patterns, designs)
-    part2_solve = part2(patterns, designs)
+    designs = day19data(file)
+    part1_solve = part1(designs)
+    part2_solve = part2(designs)
+    return build_response(part1_solve, part2_solve)
+
+@app.route('/2024/20', methods=['POST'])
+def day_20_rest():
+    from day20funcs import day20data, parts
+    file, success = get_file_from_request()
+    if not success:
+        return file, 400
+
+    grid = day20data(file)
+    part1_solve = parts(grid, 2, 2)
+    part2_solve = parts(grid, 50, 20)
     return build_response(part1_solve, part2_solve)
 
 @app.route('/2016/2', methods=['POST'])
