@@ -4,13 +4,7 @@ def day22data(file):
     return list(map(int, file.read().decode('utf-8').splitlines()))
 
 def part1(data: list) -> int:
-    result = 0
-    for secret in data:
-        new_secret = secret
-        for i in range(2000):
-            new_secret = next_sequence(new_secret)
-        result += new_secret
-    return result
+    return sum(generate2000th(secret) for secret in data)
 
 def part2(data: list) -> int:
     market_map = defaultdict(int)
@@ -29,6 +23,11 @@ def part2(data: list) -> int:
             best_sequence = sequence
             print (best_sequence, best_result)
     return best_result
+
+def generate2000th(secret: int) -> int:
+    for _ in range(2000):
+        secret = next_sequence(secret)
+    return secret
 
 def next_sequence(secret: int) -> int:
     secret = prune(mix(secret, secret << 6))
