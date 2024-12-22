@@ -22,7 +22,9 @@ days = {
     17: "Chronospatial Computer",
     18: "RAM Run",
     19: "Linen Layout",
-    20: "Race Condition"
+    20: "Race Condition",
+    21: "Keypad Conundrum",
+    22: "Monkey Market"
 }
 
 def generate_index():
