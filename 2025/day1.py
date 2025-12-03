@@ -1,14 +1,3 @@
-data0 = """L68
-L30
-R48
-L5
-R60
-L55
-L1
-L99
-R14
-L82"""
-
 data = """L40
 R27
 R20
@@ -4614,56 +4603,95 @@ R37
 L18
 R29"""
 
-def parse_instructions(input_str):
-    instructions = input_str.strip().split('\n')
-    return [(inst[0], int(inst[1:])) for inst in instructions]
+def compute_password(rotations, start=50, dial_size=100):
+    position = start
+    times_at_zero = 0
 
-def part1(instructions):
-    current_pos = 50
-    part1 = 0
-    for direction, value in instructions:
+    for instr in rotations:
+        instr = instr.strip()
+        if not instr:
+            continue  # skip blank lines
+
+        direction = instr[0]
+        distance = int(instr[1:])
+
         if direction == 'L':
-            current_pos -= value
+            position = (position - distance) % dial_size
         elif direction == 'R':
-            current_pos += value
-        current_pos %= 100
-        if current_pos == 0:
-            part1 += 1
-    return part1
+            position = (position + distance) % dial_size
+        else:
+            raise ValueError(f"Invalid direction: {direction}")
 
-def part2(instructions):
-    current_pos = 50
-    part2 = 0
-    
-    for direction, value in instructions:
-        # Add full rotations (100s) to counter
-        part2 += value // 100
-        value %= 100
-        
-        old_pos = current_pos
-        
-        # Update position
+        if position == 0:
+            times_at_zero += 1
+
+    return times_at_zero
+
+def count_zero_clicks(rotations, start=50, dial_size=100):
+    """
+    Count how many *clicks* (intermediate positions, including the final one
+    of each rotation) land on 0.
+
+    rotations: iterable of strings like "L68", "R48", etc.
+    start: starting dial position (default 50).
+    dial_size: number of positions on the dial (default 100: 0..99).
+    """
+    pos = start
+    total_hits = 0
+    N = dial_size
+
+    for instr in rotations:
+        instr = instr.strip()
+        if not instr:
+            continue
+
+        direction = instr[0]
+        dist = int(instr[1:])
+
         if direction == 'L':
-            current_pos -= value
-        else:  # direction == 'R'
-            current_pos += value
-        
-        # Check for crossing zero (modulo boundary)
-        if ((direction == 'L' and current_pos < 0 and old_pos > 0) or
-            (direction == 'R' and current_pos >= 100) or
-            (current_pos % 100 == 0)):
-            part2 += 1
-        
-        current_pos %= 100
-    
-    return part2
+            # Moving left: positions visited are pos-1, pos-2, ..., pos-dist (mod N).
+            # We want k in [1, dist] such that (pos - k) % N == 0.
+            # That is k ≡ pos (mod N). Smallest k >=1:
+            #   if pos > 0 -> k0 = pos
+            #   if pos == 0 -> k0 = N (since k=0 is not a click).
+            if pos == 0:
+                first_k = N
+            else:
+                first_k = pos
 
-def main():
-    instructions = parse_instructions(data)
-    result = part1(instructions)
-    print("Part 1 Result:", result)
-    result = part2(instructions)
-    print("Part 2 Result:", result)
+            if first_k <= dist:
+                hits = 1 + (dist - first_k) // N
+            else:
+                hits = 0
+
+            total_hits += hits
+            pos = (pos - dist) % N
+
+        elif direction == 'R':
+            # Moving right: positions visited are pos+1, pos+2, ..., pos+dist (mod N).
+            # We want k in [1, dist] such that (pos + k) % N == 0.
+            # Solve k ≡ -pos (mod N).
+            r = (-pos) % N
+            # If r == 0, the first hit is at k=N (since k=0 is not a click).
+            first_k = N if r == 0 else r
+
+            if first_k <= dist:
+                hits = 1 + (dist - first_k) // N
+            else:
+                hits = 0
+
+            total_hits += hits
+            pos = (pos + dist) % N
+
+        else:
+            raise ValueError(f"Invalid direction: {direction}")
+
+    return total_hits
 
 if __name__ == "__main__":
-    main()
+    sample_rotations = data.strip().splitlines()
+
+    password = compute_password(sample_rotations)
+    print("Password for sample data:", password)
+    password = count_zero_clicks(sample_rotations)
+    print("Password for sample data (method 0x434C49434B):", password)

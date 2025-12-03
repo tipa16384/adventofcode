@@ -1,0 +1,397 @@
+picotron cartridge // www.picotron.net
+version 2
+
+:: .info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTEwLTEyIDE0OjQ5OjMwIixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMToxOTowOCIscnVudGltZT0yMSx3b3Jrc3BhY2VzPXt7bG9jYXRpb249Im1haW4ubHVh
+IzQiLHdvcmtzcGFjZV9pbmRleD0xfSx7bG9jYXRpb249ImdmeC8wLmdmeCIsd29ya3NwYWNlX2lu
+ZGV4PTJ9LHtsb2NhdGlvbj0iZ2Z4L2NhdHMuZ2Z4Iix3b3Jrc3BhY2VfaW5kZXg9Mn0se2xvY2F0
+aW9uPSJnZngvZ3Jhc3MuZ2Z4Iix3b3Jrc3BhY2VfaW5kZXg9Mn0se2xvY2F0aW9uPSJtYXAvMC5t
+YXAiLHdvcmtzcGFjZV9pbmRleD0zfX1dXQ==
+:: gfx/
+:: gfx/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTEwLTEyIDE0OjQ5OjMwIixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMToxOTowOCJdXQ==
+:: gfx/0.gfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTAxLTE3IDEwOjM1OjQ4Iixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMDo1Mzo1NSIscmV2aXNpb249MzZdXWx6NACvAwAA6T0AAPMhe1swXT17Ym1wPXB4dQBD
+IBAQBPBWBxAHwBfQF8AHEAfwVixmbGFncz0wLHBhbl94CADLeT0wLHpvb209OH0sPgAf8DEAHB-3
+MQAdMQAHIAIAMhAnAAIAL-fQcwAdMbIEJwIAMBckBwIAQfQFACQCAB8ESQAcL-8YvQAdL9cUAgAL
+D24BSpMHDQQASgAKQBoCACcKYAwAPwBKAEwAHDPAClACAAYKAB9gkAAeE2A6ABBQggADCgBfUApg
+SgBKACoJVgAP2AAcChYBH2DcACgI0AAOkgAPSgAlHwC2ASoI0gAfwNwAKgOEAAKGAA_UACwKQAAP
+vgEpYwBLAAtAGwIANYtAGwIAHwtJABwXW0gAGWsMAA_SACAfUAIAAD9gSwCTACgIAgAPkwAeM3tQ
+CwIAF1ucAB9rRgAyLwtQ1gAhAzsAPwsgG2sBKQgfAQ-8ASkvUAsCAAUPSQAvAZAALwBL2wAg8gAw
+CwALIAsQCxALIAsACzBJACELMBAAABgAACAAD_0AIC4LUAIADw8CIe0LQCsgKwALAAsAGxALEAQA
+H0CNASWBC0ArMBsACyBGAGMgCwAbMCtKAA5QAA8iBB4IAgAvCwCSAyoeawUDD5UAKwXwAD8bAFuY
+ACsPJgIwJgBLpwM0YEtgzAIPNAEgT2sgC1ACAAIfIBkCHh8byAE1HwtHAAIBMgE-AAtAmgArCAUD
+AAQAASMDXysgK0ALVgAgAwMEApkAAcsBIwtACgATIBoAD98BIiRgC68AAD8BPzALUJYBJlRrUAtA
+CwQABgoAL1Br3AotYy0wLjEyNTYAETIMAA86ALEE0AwSFM4MPxcU1yAMCA9lACUv1xQCAAMSFwoN
+KRQHCg0vNABoACXyF0A7kEs-GUArDw8bXxkgOx8PXxkwCwAbLw8PGR8PDxoPD1ALHxkfDgCwGS8P
+QC8ZXw9wOz4WAP8VGy4dDkBNLgsNDjALTR4bDUAbPSsNQB1LPQswLXsdMC1ALfAElwAl8QPwArYg
+FpcWEAYHnxYHBhAGB54GAHEeBgoGLgoODABUDgYqBh4MAE8aCRoeGAAACDAAFZ4GAABZAH-WENYQ
+FpAWOAEm8A7wBy8VsA4fFw6wDh0OoA49DpAOPQ5gPjc_IA6nDgQA-wkwPjc_YFWAdWCVQCUwRSAv
+GFAsMCxQLCBxACUf8uoCJw86AP--------------------------------------------------
+---------8pQbT04fX0=
+:: gfx/cats.gfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTEyLTAyIDIzOjE1OjQ2Iixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMToxMjo1MyIscmV2aXNpb249OV1dbHo0AF0OAACyQAAA8EB7WzBdPXtibXA9cHh1AEMg
+EBAEvx4CLxKvHgIEDxkEDxWfHg8SBB8ZBA8Unx4PFB8ZJI8eAg8UDxkUHo8eDxUPFC4Zjx4PFAQO
+KQ8fjx4FBwDBDw9-Hg8VBQ4pHw9vIwCiJA4JDw8Hbx4ETggAMBQOOSYA8ANvHhQ_GQ8fbx4ELgQP
+FA8WGW9aAIEEDgkEBQ4JfzoA8wQEDhkOBSxmbGFncz0wLHBhbl94CADKeT0wLHpvb209OH0svwB0
+Tx4vEn8eAsAAYgJuDxIOAsIAYAJuDxUPEsYA8U4FBA0PEm4EPRQNAm5JHQQCbi8fCSwEfgcPDxwL
+BwsMDxJuFwsMCxcLBW4HCw8WDAoGBwsFAl4HCwUNBAoHCwoPEl4HCwYKBQ8NBgsJBAJOKwoFDxUE
+GQQITjkKBQ0IAO8dCR0EDxJONR0PFBgCXsQAHFDPHh8Sv3kBSQ8ZBAKCAUESHxkFigEA3QBBFB8Z
+jygBUg8ZFA4JiAEhGR_IASIZH4gBYRIFDhkPF3cB0Q8SDxUUHg8PF28eBU4HACEEHq8BAJMBAgoA
+ABMAQQkEDxWNASMPFY4BLw8WjwEoND8eL8sAZAUCfx4CDs0AIX4CCgDwCwUUfhQdNH5JDQQCfh8f
+GRwEjh8PHBsPFwR_ggEAfgHwGAJuCwoLDAoLBwoCbgsPDQsMBQYHDxcEDxJeCwYPFwoFCgsMDQRe
+G6kA-w0VKQQCTjkVGQ0PFAJOOQQpDQQCTjUNBAUfFQ8ShAEd-wz-Hr8C7gVeDxIfFQI_DxIETg0P
+FRQMAg4dDARKAB70B3EPFRUPEi8eDxQFDxJPHh8VHxkEAg-hATA-HgXBATAPFgJlARAUEAAAywER
+ThoA-xYJDgQOSQ4EPQQ5Px8JDA8WDxItOQwvDxwLBg8SLQ4pSwwbDw0tkQAcAjUCUAQPGSmvcwPy
+BwUEDxlfHhIeDxIjBQ8WTgIUEg8VQz40A-AYFQQfFg8TEz4CDxkJHQUNCQ0FDxMDPgIPFh0EBRkN
+BA8TA04CBA0EGgDwAgQMA14CFA8UHQQPFQUDfg8UZQAQBQUA8A4UvgIEHb4CHQSuDxUELZ4PFAQN
+CR2eCwQdFJ4-EpMDD8AAHPAPSR8ZDxQPEm8eOQ8ZBAUPEn8ePxYVDxMCfx5TDxMFGQAxUx8TBwCA
+DxMPFQRvHmMjA2MPEl8eYwUIAAQRAEAEBU8TggCgbx4PFC8VHxQCj6MCALQAkBJ_BAIPFQQ-GWoC
+EA9xAEEVBE8ZDABgBA8VFB8ZQwQ-XpxefAEjQR8ZCQ59AfACBB5vHiIPEg8NAxUPFl8eDxI3ATAT
+Q08dAuAeBQQfFiNPHgIECQ4FDpkDERMYAHEOBAUZBAUTLgAgBSmFAQCuA-8gHxQOCQ4NDxMDfx4f
+FQ0EHQQFrx4CDQQOBKwCBB4ErAIuBJwNBD6cDxIeBB6cXxW4ABxAPxkJDkMFQG8eKR4IALB-Hi8W
+FAUPE48eQ2wBYn8eQy8TAnIBExR7ARAUYQEACAAlAl8PAGIvEwUEBQ0jABERCgFRDAKPHhJbA-8Q
+jx4ECwweNGsOBA8VHgkuAlsEDgwUDgQOBAJbig8SWwgGHjEPEi9nAwDKAhJPbQNDFA8SAvwCIE8e
+_AKjBA8SDx4FHxMPFDEAAH4BQBMFDgUOAGEkHi8bAw5nAUAeAz8bCQCCDxQUDhMvG28LADMFEx8L
+AABLAEQFDgMPDwABPAMhDgMOAAGhBQAQACEEfx0AEy8MAHEUPxkEBW8eBwUALgafFX8eBC0kAYxv
+nAEd8QAPGSkvDx8WDx8PFgYNLx4PAMMFDxUfGQ8WDQ8SHx4gAGAJDxkfFgUPACA5Dx8GwB85BR8e
+BR8ZBA5pDicAcQMFLgUEOQ6pBKAbAwQeBA4ZHgQ-DADwCw8TdE8eEz8TDxUiXx4VDxUvEwKPHg4J
+BS8VCAAQKTIGQBQSbx4wACEPFOgB-woEDgkuDxQUDF8eDAQeFA8VDAQCXx6PFW8e2wAcUb8eJAKu
+TgExFJ4CBwBBBJ4CDwgAcA8ZjgIPFU8GAPABFD8ZCY4CHQkdDx_ODxQdGcwGEH6VACAtCQsAYG4P
+FQQ9CQcHMW4ELekG8AN_BQQdKQxuBC0EBQ0Zbg8VFB3DBO9_Cw8UBD0EjgsKBA0ZDekGHiEkD3kI
+Iw8SbQgjAg6yAGECbhUEHxmzAMACbl0UAm4ZDRkdAn6DAUENDA8PzQbwGm4vDwwrDxcPEm4bBhwr
+Cm4bBQ0EDxYbBAJeGwgNBAgbDAReKwgFDxUIUgAwTjkIcAj-BwUHTjkNBBkNBAdONB0kDxReXQQD
+B25iAR4gIr52BBMUaAEiFZ6sACANnjAD8RwMBI4PFQQMBAwZjg0ECRwfH44EDAkcHw9_AgQpK24C
+DQQcCSteAgQ8CStuBQCgDxIELBkbXgIELI4HgF4CCgQsFRluBwAvCQQ7CB0RL5oAAsYJI44CVwEx
+DxWOXwNiDxUEDxSOGgLwCQ8ZBY49FAKOHx8JDQwFnh8PDQwLDASOKxwH8BiOFgsMDxYLCgJ_GgsN
+BQsKBX4WCwQFBgwNAm4bCQUfFQkNDxRuORVdBYBuOQUtDxRuJdAGLwh_5QceUE4PEgLfzgMSz2wE
+Ic8evQARzxECBxQAQB8Zvx5aBtAPGb8eFB8Zrx4EPxlf0gmPEj8eDxUUDxl6AB5gQBI_HxJ_KQFg
+Eh4NFA1u0wMRDW8C8A0Fbg8VBQkEFRQPFG4UGS8fCQ8ZBA1OHBkvDw8fegIgHQKDCyBPDxQDEQYM
+AAJJBCEfFg0A-xAfDwYBBQwEAQ0_KRsGDw0PFg8fDBUNLikKOwoZCg0uqQAcEp-7BlAvGZ8eBQgG
+APUA8xwFHxUDHxsDHxNPHgQfGR8VBSMPEwNPHgQJDxkFHgQDDxMDDxtPHgQOBD4EDADgJC4EBSNd
+DxQ_DA8TI108DOAVDxMFBA8WbQ8SDgQMAWwE-w0OfRIbHAQOnQIkCwSNAiQMAp0CFB4EAp0CRP0A
+tQAccDkfGRR-Hk_FAkCPHjMf_QQQPxEFQw8VAn8KAKEUBAJvHj8bEwQfUwgiAy8WAAIOABZDCwBA
+DxYFE2oGMRRvHtUCQAFCbx7AApAVvx4fGQkELxRABHEPFG8ZAm8eeggAbgcjFQ95B1_vHh8Orz8F
+HTF-HgJ0AVMPGQkejwwAIC6PmQJwExMPFgQOPycNIRUSWwFwAw0TLx4CBH4HUA8UFSMdrwqALhQe
+HxUPEwNWBjASHhTfBbAPExMNPx4EDgUOGSkJkBMjTx4EDxUuBI8B-yRfHgIkDxQMBRQFbx4CHxQM
+BB4EC28eAhsELgQCagIkHgR6AgseFAKKAgsuDxKqCAQuCCrRABwAiQGhFI8eKQ8ZFJ8eL2gFUJ8e
+MwWuigGRFZ4-GwMFDxSOBwBhGQR_LxsT5AcgbkMNByAEbusJ-xgkbgENHxQNAp4CDQwEDL4CDBQM
+BQyeDRQvGQyODQwECwQcjgwkHH5tCB4Abw5SDxICHx7vBxAJFgEgGQkwASASDWsBAFAIkwQ-GQ8W
+HxsTX-QHIg4jMAghBB7FAjADDxshCCNPFUcIAXoBMgwPFekJAEwLQRsTDANJAHAOFAUDDxsjvwH-
+IC4UDDMrAgQ_BB8VDCMrAg4ZDgQKHxQ6KwIFBA4ECjQKWwIIBAoBNHsiChgEuyJL2QAcYBkECT8f
+KdsA8gEvHi8ZDxYEDxk5DgQ-HgV_sAQhGwWBA3AUVB8eHxsj7AJSFB4ZDh8aAyAvFUUI8AsfHgMf
+GxMPFSEPFBUPFQUfHiMfEwKfHiMPE9QCAEkDcL8eAwUPEs87AU8S-x4_owAc0A8bDxb-GxYPFl8b
+DxYNAJMfGw8WLxsPFj8EADEvGx8cAPAUvxsPFd8bLxUvGw8VPxsPIC8bPxUPIB8bHxUfGw8VDyAP
+FQ8MAEEgLxUPEAASHxQAAQgAABgAEB-aAUUVHyAPCAAhHxQwAEAUHxUvEgASFBIA-wMkLxQUjhQ_
+BD4E7iSeHxUeFA7SABwy-xsisgATj84ABNYAdK8bDxZ-Gx-CAAEIACQPG7AAARAAEiASAACuADMv
+IA8aAAAQABFPCAABJgABygATH74AMU8Vf6oN-wUvFe8UDxX-FAAEjh8VLiQ_RB0_BG8EHVE-FA8V
+j1oA8BwUDh8VXh0uJC40Dg0ODS4EHg0OJD4NXg1eDT4NDg0eHS4NLh0eNA4NPhQNKQPwAjQOHW5k
+Dh0uDR4UDjQODyANCgD-GR4EHg0MHgQOHR4kLh0OJA4NDC4NHhweBE4MLRwNDg1_PD49Ti1ODRyl
+AByQDxRUDh8VfjQeEAEwbhQeEwFAbg0_DXYA8DEULg0MPX4NHg0cLhQeDR4NbkQeLU5kHh0_dC4N
+Lg0ORF49HhRODS49Xj0uHQwNPi0_DS4sHRw_DA0_HSwNPgwd2QAfTpAAHPQEBf0A7xYN7g0e3R4N
+Bb0eDQWuDQUAgI4tHg0Fbh0VDABQTg0VHQUJAFE_DRUNLgkAEiUIAEEuDQVNGgBBLh0uDSwAUC4F
+Lg0lCQCPHg0VDQ4NDxVSDB0g7QWTADDNLr1YACGuHQQA8AQtjh0eDRUdbh0eDQUdFQ1OHR4NbwAR
+PggAQQUNBT4ZADAOHQXbAQGkABAFCQBgJQ0uBQ0eEgAAFRQhDRUMAA_PABw3DR8WzAAC2QBSDA0e
+DQHuAAB5ACMBDAsBKD0VHAEFLQEFPwEwXi0cBwApfj1qAf8BDQUNFR0VDQUNHt3uBQ3e9ScIHQDd
+AJAPFg0FDxUNHxbtAFIBBR4ND_0ANAwBBacAIhU9HgFHLg0lPkABBFABQwwFHW5pAQN1ATENFS3d
+AZ-NLg3uDd4N9QGYABwv8PAxAP--------------------------------------------------
+-----_JQbT04fX0=
+:: gfx/grass.gfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTEyLTAzIDAxOjA0OjE5Iixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMToxMjozMSIscmV2aXNpb249MV1dbHo0AKkBAACeMgAA9Bd7WzBdPXtibXA9cHh1AEMg
+EBAEBf0A7xYN7g0e3R4NBb0eDQWuDQUAgI4tHg0Fbh0VDABQTg0VHQUJAFE_DRUNLgkAEiUIAEEu
+DQVNGgBBLh0uDSwAUC4FLg0lCQDzCB4NFQ0ODQ8VFSxmbGFncz0wLHBhbl94CADKeT0wLHpvb209
+OH0slAAg7QWTADDNLr1YACGuHQQA8AQtjh0eDRUdbh0eDQUdFQ1OHR4NbwARPggAQQUNBT4ZAHEO
+HQUNLh0epAAQBQkAYCUNLgUNHhIAYQ8VBQ4NFQwAD48AHDcNHxbMAALZAFIMDR4NAe4AAHkAIwEM
+CwEoPRUcAQUtAQU-ATBeLRwHACl_PWoB-wINBQ0VHRUNBQ0e3e4FDd71AKIAHADdAJAPFg0FDxUN
+HxbtAFIBBR4ND_0ANAwBBacAIhU9HgFHLg0lPkABBFABQwwFHW5pAQN1ATENFS3dAZ-NLg3uDd4N
+9QGYABwv8PAxAP--------------------------------------------------------------
+-0RQbT04fX0=
+:: input.txt
+--[[pod_format="raw",created="2025-12-01 00:26:53",modified="2025-12-03 00:36:33",revision=14]]
+11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124
+:: main.lua
+--[[pod_format="raw",created="2025-12-01 00:13:48",modified="2025-12-03 01:19:08",revision=208]]
+
+input_lines = nil
+log = {}
+max_lines_to_display = 19
+line_height = 10
+frame_count = 0
+current_line = 0
+part1_value = 0
+part2_value = 0
+first_log_line = -1
+
+current_position = 50
+link_jump_start = -1
+safe_jump_start = -1
+
+cat_sheet = nil
+cat_idle1 = { 0, 1, 6, 7 }
+cat_idle2 = { 2, 3, 8, 9 }
+cat_ground = { 24, 25, 26, 27 }
+cat_safe = { 28, 29, 30, 31 }
+cat_offset = { {0,0}, {16,0}, {0,16}, {16,16} }
+
+function read_input_numbers()
+	numbers = {}
+	for line in data:gmatch("[^\r\n]+") do
+   	 numbers[#numbers+1] = tonumber(line)
+	end    
+   
+   return numbers
+end
+
+function read_input_strings(source)
+	strings = {}
+	for line in source:gmatch("[^,]+") do
+   	 strings[#strings+1] = line
+	end    
+   
+   return strings
+end
+
+function add_to_log(string)
+	log[#log+1] = string
+end
+
+function _init()
+	local content = fetch("input.txt")
+	if content then
+		add_to_log("File found!")
+		input_lines = read_input_strings(content)
+		add_to_log("Read " .. #input_lines .. " lines of input.")
+	else
+		add_to_log("Nope, no luck.")
+		input_lines = {}
+	end
+	add_to_log("maxint is " .. math.maxinteger)
+
+	cat_sheet = fetch("./gfx/cats.gfx")
+	if cat_sheet then
+		add_to_log("Cats meowing!")
+	else
+		add_to_log("Warning: Cats not found.")
+	end	
+
+	add_to_log("")
+end
+
+function draw_cat(which_cat, x, y)
+	palt(30, true)
+	for i = 1, 4 do
+		spr(cat_sheet[which_cat[i]].bmp,
+			x + cat_offset[i][1],
+			y + cat_offset[i][2])
+	end
+	palt()
+end
+
+function _draw()
+	-- use locals instead of implicitly creating globals
+	local top_x  = 0
+	local top_y  = 0
+	local text_x_offset = 25
+	local text_y_offset = 0
+
+	-- precompute common positions
+	local base_x = top_x + text_x_offset
+	local base_y = top_y + text_y_offset
+
+	camera(top_x, top_y)
+	cls(28)
+	map()
+
+	-- cache #log and first index
+	local log_count   = #log
+	local first_index = max(1, log_count - max_lines_to_display + 1)
+	
+	if first_log_line > 0 then
+		first_index = first_log_line
+	end
+	
+	local last_index = min(log_count, first_index + max_lines_to_display - 1)
+
+	-- starting y for log entries (same "+5" as your original)
+	local start_y = base_y + 24
+
+	for i = first_index, last_index do
+		-- avoid recomputing top_x + offset every time
+		local y = start_y + (i - first_index) * line_height
+		print(log[i], base_x, y, 12)
+	end
+	
+	camera(0,0)
+	lcd_string("PART 1", 256, 40)
+	lcd_string(string.format("%016d", part1_value), 256, 60)
+	lcd_string("PART 2", 256, 100)
+	lcd_string(string.format("%016d", part2_value), 256, 120)
+	
+	lcd_string("ADVENT OF CODE", 265, 150)
+	lcd_string("2025 DAY 2", 265, 170)
+	
+	local anim = cat_idle1
+	if (frame_count & 16) == 0 then
+		anim = cat_idle2
+	end
+
+	draw_cat(anim, 230, 210 + 2 * jump_offset(link_jump_start))
+	draw_cat(cat_safe, 265, 210 + jump_offset(safe_jump_start))
+	
+	for i = 0,500,32 do
+		draw_cat(cat_ground, i, 242)
+	end
+end
+
+function jump_offset(state)
+	if state < 0 then
+		return 0
+	end
+	local t = frame_count - state
+   return (16/45) * t * (t - 15)
+end
+
+function lcd_string(s, x, y)
+	local sprite_width = 9
+	local byte_0 = string.byte("0")
+	local byte_9 = string.byte("9")
+	local byte_a = string.byte("A")
+	local byte_z = string.byte("Z")
+	local num_base = 8
+	local alpha_base = 18
+	
+	for i = 1, #s do
+		local char = string.byte(s, i)
+		local sprite = nil
+		if char >= byte_0 and char <= byte_9 then
+			sprite = num_base + char - byte_0
+		elseif char >= byte_a and char <= byte_z then
+			sprite = alpha_base + char - byte_a
+		end
+		if sprite then
+			local dx = sprite_width * (i - 1)
+			spr(sprite, x + dx, y)
+		end
+	end
+end
+
+function digits(n)
+    return #tostring(n)
+end
+
+function split_char(s, c)
+    local result = {}
+    local pattern = "([^" .. c .. "]+)"
+    for part in s:gmatch(pattern) do
+        result[#result+1] = part
+    end
+    return result
+end
+
+function is_odd_length(s)
+	return #s % 2 == 1
+end
+
+function part1(lower, higher)
+end
+
+function part2(lower, higher)
+	local nlower = tonumber(lower)
+	local nhigher = tonumber(higher)
+	local lnum = is_odd_length(lower) and (#lower // 2 + 1) or (#lower // 2)
+	local hnum = (is_odd_length(higher) or is_odd_length(lower)) and (#higher // 2 + 1) or (#higher // 2)
+	local lrange = tonumber(lower:sub(1, lnum))
+	local hrange = tonumber(higher:sub(1, hnum))
+	local seen = {}
+	
+	for n = lrange, hrange do
+		local ns = tostring(n)
+		for nc = 1, #ns do
+			local pat = string.sub(ns, 1, nc)
+			for nreps = 2, 100 do
+				local target = tonumber(string.rep(pat, nreps))
+				if target > nhigher then
+					break
+				end
+				if target >= nlower and not seen[target] then
+					part2_value = part2_value + target
+					seen[target] = true
+					if nreps == 2 then
+						part1_value = part1_value + target
+						add_to_log("*** found " .. target)
+					else
+						add_to_log("+++ found " .. target)
+					end
+					break
+				end
+			end
+		end
+	end
+end
+ 
+function _update()
+	frame_count = frame_count + 1
+
+	if link_jump_start < 0 and btnp(0) then
+		link_jump_start = frame_count
+	elseif link_jump_start >= 0 and frame_count > link_jump_start + 15 then
+		link_jump_start = -1
+	end	
+
+	if safe_jump_start < 0 and btnp(1) then
+		safe_jump_start = frame_count
+	elseif safe_jump_start >= 0 and frame_count > safe_jump_start + 15 then
+		safe_jump_start = -1
+	end
+	
+	if btnp(2) then
+		if first_log_line <= 0 then
+			first_log_line = max(1, #log - max_lines_to_display)
+		else
+			first_log_line = max(1, first_log_line-1)
+		end
+	end
+	
+	if btnp(3) and first_log_line > 0 then
+		first_log_line = max(1, min(first_log_line + 1, #log - max_lines_to_display + 1))
+	end
+
+	if (frame_count % 15 == 0) and (current_line < #input_lines) then
+		current_line = current_line + 1
+		
+		local range = input_lines[current_line]
+		local bounds = split_char(range, "-")
+		local lower = bounds[1]
+		local higher = bounds[2]
+		
+		add_to_log("Range " .. lower .. " to " .. higher)
+		part1(lower, higher)
+		part2(lower, higher)
+	end
+end
+:: map/
+:: map/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTEwLTEyIDE0OjQ5OjMwIixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMToxOTowOCJdXQ==
+:: map/0.map
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTAxLTE3IDEwOjM1OjQ4Iixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMToxNjo1NyIscmV2aXNpb249MzBdXWx6NACxAAAAbQEAAP8ce3tibXA9cHh1AEyAICAA
+IAAACwMAADAABwEACgAACwIAAAYAAAAACgUABg8AN08AAQAFIQAFEAESAE8INQAHEgAcgBEAAAsE
+AAAxDAB3ZQAABgEAGAYAfwgAAAEBAA0MAARBDAAABwwAHxYGAAfxC6MAACxoaWRkZW49ZmFsc2Us
+cGFuX3g9LTE2CgDyAXk9LTExMix0aWxlX2g9MTYKABB3CgCgem9vbT0wLjV9fQ==
+:: sfx/
+:: sfx/.info.pod
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTEwLTEyIDE0OjQ5OjMwIixtb2RpZmllZD0iMjAyNS0x
+Mi0wMyAwMToxOTowOCJdXQ==
+:: sfx/0.sfx
+b64$LS1bW3BvZCxjcmVhdGVkPSIyMDI1LTA3LTMxIDA4OjMwOjI4Iixtb2RpZmllZD0iMjAyNS0w
+Ny0zMSAwODozMDoyOCIscmV2aXNpb249MF1dbHo0AKAAAAALCgAA-zBweHUAAygAAAQABA9AEAIO
+AAGgASACoA4ADxAADfDKAQIDQA8PkAQFBgdADJAICQoLQAyQDwwPDQ8ODEAM8P8BAOv-J6oBEAYP
+MBABIAEgAfAAAhACDhABIA8hIAEwD0Dwww8oD--wxg-4Cg--D4AP9w8NAfAJARAGDjAA------_9
+H-8BAKzPyA9AAA8QQP--sPD-AQD-6lD-----KQ==
+:: [eoc]
