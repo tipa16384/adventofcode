@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Puzzle4 {
     private void part1() {
-        var lines = readFile("2023/puzzle4.dat");
+        var lines = readFile("puzzle4.dat");
 
         var part1 = lines.stream().map(this::parse)
             .map(this::intersection)
